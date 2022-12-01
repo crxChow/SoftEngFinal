@@ -105,7 +105,9 @@ export default class Model {
   }
 
   addDesigner(email){
+    //console.log(email);
     this.designers.push(new Designer(email))
+    //console.log(this.designers);
   }
   
   addProject(name, description, date, projecttype, goal, designer){

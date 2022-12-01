@@ -7,18 +7,24 @@ import { BrowserRouter as Router, Routes, Route}
 import Home from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
+import { Outlet } from 'react-router-dom';
 
 
 function App() {
   const [model, setModel] = React.useState(new Model());
+  
+  //const MyContext = React.createContext([model, setModel]);
   const [redraw, forceRedraw] = React.useState(0);
   const appRef = React.useRef(null);
   const canvasRef = React.useRef(null);
+  
+
   //console.log(model);
 
   React.useEffect(() => {
     //redrawModel(model, canvasRef.current);
   }, [model, redraw]);
+
 
 return (
 	<Router>
@@ -26,9 +32,11 @@ return (
 	<Routes>
 		<Route exact path='/' element={<Home />} />
 		<Route path='/login' element={<Login/>} />
-    <Route path='/register' element={<Register/>} />
+    <Route path='/register' element={<Register rModel = {model} />} />
 	</Routes>
+  <Outlet context ={[model, setModel]} />
 	</Router>
+
 );
 }
 
