@@ -7,24 +7,26 @@ import { BrowserRouter as Router, Routes, Route}
 import Home from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useOutletContext } from 'react-router-dom';
+import { Controller } from './controller/controller.js';
 
 
 function App() {
-  const [model, setModel] = React.useState(new Model());
-  
+  //const [model, setModel] = useOutletContext
   //const MyContext = React.createContext([model, setModel]);
+  const [model, setModel] = React.useState(new Model());
   const [redraw, forceRedraw] = React.useState(0);
   const appRef = React.useRef(null);
   const canvasRef = React.useRef(null);
   
-
   //console.log(model);
 
   React.useEffect(() => {
-    //redrawModel(model, canvasRef.current);
+    forceRedraw(Controller(model));
+    console.log(model); 
   }, [model, redraw]);
-
+  
+  
 
 return (
 	<Router>
@@ -32,13 +34,13 @@ return (
 	<Routes>
 		<Route exact path='/' element={<Home />} />
 		<Route path='/login' element={<Login/>} />
-    <Route path='/register' element={<Register rModel = {model} />} />
+    <Route path='/register' element={<Register />} />
 	</Routes>
-  <Outlet context ={[model, setModel]} />
 	</Router>
 
 );
 }
 
 export default App;
+
 

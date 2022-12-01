@@ -105,15 +105,38 @@ export default class Model {
   }
 
   addDesigner(email){
-    //console.log(email);
+    console.log(email);
     this.designers.push(new Designer(email))
-    //console.log(this.designers);
+    console.log(this.designers);
   }
   
   addProject(name, description, date, projecttype, goal, designer){
     this.projects.push(new Project(name, description, date, projecttype, goal, designer));
   }
 
+  checkDesigner(email){
+    for(let i = 0; i<this.designers.length; i++){
+      if(this.designers[i].email === email){
+        return true;
+      }
+    }
+    return false;
+  }
+
   // this is for another tiem
   //addSupporter()
 }
+
+/*
+export async function getDesigner(id){
+  /*let instance.post('/registerDesigner').then((response)
+    id.addDesigner(response.data.email),
+
+  ) 
+  let designers = await localForage.getitem("designer");
+  let designer = designers.find((designer) => designer.id === id);
+  if(!designer) throw new Error("No Designer Found", id);
+  Object.assign(designer, updates);
+  return designer;
+}
+*/
