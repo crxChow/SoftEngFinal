@@ -2,7 +2,7 @@ import React from 'react';
 import Model from "./model/model.js";
 import './App.css';
 import Navbar from './comps/index';
-import { BrowserRouter as Router, Routes, Route}
+import { BrowserRouter as Router, Routes, Route, createBrowserRouter}
 	from 'react-router-dom';
 import Home from './pages/home';
 import Login from './pages/login';
@@ -22,18 +22,16 @@ function App() {
   //console.log(model);
 
   React.useEffect(() => {
-    forceRedraw(Controller(model));
+    forceRedraw(redraw + Controller(model));
     console.log(model); 
   }, [model, redraw]);
-  
-  
 
 return (
 	<Router>
 	<Navbar />
 	<Routes>
 		<Route exact path='/' element={<Home />} />
-		<Route path='/login' element={<Login/>} />
+		<Route path='/login' element={<Login />} />
     <Route path='/register' element={<Register />} />
 	</Routes>
 	</Router>

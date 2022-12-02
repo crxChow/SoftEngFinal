@@ -33,7 +33,8 @@ export default function Register(){
         console.log(model);
         let userEmail = document.getElementById("user_name").value;
 		model.addDesigner(userEmail)
-        /*instance.post('/registerdesigner', userEmail).then((response) => {
+        
+        instance.post('/registerdesigner', userEmail).then((response) => {
             console.log(response);
 			
             if(response.status === 200){
@@ -42,7 +43,7 @@ export default function Register(){
             else{
                 
             }
-        })*/
+        })
 	}
 
 	return (
