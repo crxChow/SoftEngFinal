@@ -30,7 +30,7 @@ export default function Login(){
   
             console.log(response.data.result);
 			
-            if(response.data.status === 200){
+            if(response.data.result === "true"){
                 model.addDesigner(userEmail);
             }
             else{
