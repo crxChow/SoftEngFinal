@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route, createBrowserRouter}
 import Home from './pages/home';
 import Login from './pages/login';
 import Register from './pages/register';
+import ErrorPage from './error-page.jsx';
 import { Outlet, useOutletContext } from 'react-router-dom';
 import { Controller } from './controller/controller.js';
 
@@ -18,6 +19,25 @@ function App() {
   const [redraw, forceRedraw] = React.useState(0);
   const appRef = React.useRef(null);
   const canvasRef = React.useRef(null);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Home /> ,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          path: "login/:loginID",
+          element: <Login />
+        },
+        {
+          path: "register/:registerID",
+          element: <Register />
+          //loader: registerLoader
+        }
+      ]
+    }
+  ])
   
   //console.log(model);
 
@@ -27,14 +47,14 @@ function App() {
   }, [model, redraw]);
 
 return (
-	<Router>
+  router	/*<Router>
 	<Navbar />
 	<Routes>
 		<Route exact path='/' element={<Home />} />
 		<Route path='/login' element={<Login />} />
     <Route path='/register' element={<Register />} />
 	</Routes>
-	</Router>
+	</Router> */
 
 );
 }
