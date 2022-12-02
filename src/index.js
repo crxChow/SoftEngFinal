@@ -1,42 +1,45 @@
+import React from "react";
+import "./App.css";
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import ReactDOM from "react-dom/client";
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import ErrorPage from "./error-page.jsx";
+import { Outlet, useOutletContext } from "react-router-dom";
+import { Controller } from "./controller/controller.js";
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-//import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
-import './index.css';
-import App from './App';
-//import {BiggerApp } from './App';
-//import { BrowserRouter } from 'react-router-dom';
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-      <App />
-  </React.StrictMode>
-);
-/*
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home /> ,
-    errorElement: <ErrorPage />
-    loader: homeLoader,
-    action: homeAction,
+    element: <Home />,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: "register/:registerID"
-        element: <Register />
-        loader: registerLoader
-      }
-    ]
-  }
-])
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+    ],
+  },
+]);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+//console.log(model);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-
-
-*/
+/*<Router>
+	<Navbar />
+	<Routes>
+		<Route exact path='/' element={<Home />} />
+		<Route path='/login' element={<Login />} />
+    <Route path='/register' element={<Register />} />
+	</Routes>
+	</Router> */
