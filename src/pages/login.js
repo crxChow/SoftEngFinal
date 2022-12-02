@@ -1,7 +1,6 @@
 import { getSuggestedQuery } from "@testing-library/react";
 import React from "react";
-import { Form, useLoaderData } from "react-router-dom";
-import { Controller } from "../controller/controller";
+import { Form, useLoaderData, redirect } from "react-router-dom";
 import { instance } from "../model/AI";
 import { getDesigner } from "../model/model";
 
@@ -10,16 +9,28 @@ const loginbutton = {
   color: "white",
 };
 
+export async function action({ request, params }) {
+  const formData = await request.formData();
+  console.log(formData);
+  const updates = Object.fromEntries(formData);
+  console.log(updates);
+  await getDesigner(params.designerId, updates);
+  if(getDesigner()){
+  //return redirect(`/designer`);
+  }
+  else{}
+}
+
 export default function Login() {
-  const user = useLoaderData();
-  var exists;
+
+    var exists;
   function handleClick() {
-    //let model = Controller(null);
-    //console.log(model);
+
     let userEmail = document.getElementById("user_name").value;
-    //exists = model.checkDesigner(userEmail);
-    //console.log(userEmail);
-    getDesigner(userEmail);
+
+    exists =  getDesigner(userEmail);
+    console.log(exists);
+    return redirect("/designer");
   }
 
   function display() {
@@ -34,9 +45,9 @@ export default function Login() {
     <div id="login">
       <h1>{display()}</h1>
       <input type="text" id="user_name" name="email"></input>
-      <button style={loginbutton} onClick={handleClick}>
-        LOGIN DESIGNER
-      </button>
+      <Form action="designer">
+            <button type="submit">LOGIN</button>
+          </Form>
     </div>
   );
 }

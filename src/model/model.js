@@ -23,15 +23,20 @@ export async function getDesigner(userEmail) {
   body["body"] = JSON.stringify(data);
   var js = JSON.stringify(body);
   console.log("sent: " + js);
+  //let result;
   instance.post("/login", js).then((response) => {
     console.log(response.data.result);
+    //result = response.data.result;
 
-    if (response.data.status === 200) {
-      return response.data.result ?? null;
+   if (response.data.status === 200) {
+      //return response.data.result ?? null;
+      return true;
     } else {
-      return null;
+      return false;
     }
   });
+
+  //return result;
 }
 
 export class Supporter {

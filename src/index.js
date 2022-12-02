@@ -3,9 +3,11 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import ReactDOM from "react-dom/client";
 import Home from "./pages/home";
-import Login from "./pages/login";
+import Login, {action as designerAction} from "./pages/login";
 import Register from "./pages/register";
 import ErrorPage from "./error-page.jsx";
+import ListProjects from "./pages/listprojects";
+import Designer from "./pages/designer";
 import { Outlet, useOutletContext } from "react-router-dom";
 import { Controller } from "./controller/controller.js";
 
@@ -18,11 +20,16 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+        action: designerAction,
       },
       {
         path: "register",
         element: <Register />,
       },
+      {
+        path: "login/designer",
+        element: <Designer />
+      }
     ],
   },
 ]);
@@ -35,11 +42,4 @@ root.render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-/*<Router>
-	<Navbar />
-	<Routes>
-		<Route exact path='/' element={<Home />} />
-		<Route path='/login' element={<Login />} />
-    <Route path='/register' element={<Register />} />
-	</Routes>
-	</Router> */
+

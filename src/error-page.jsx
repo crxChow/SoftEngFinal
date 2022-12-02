@@ -6,7 +6,7 @@ export default function ErrorPage() {
 
   return (
     <div id="error-page">
-      <h1>Chris messed up!</h1>
+      <h1>Gabe messed up!</h1>
       <p>Sorry, he can't code</p>
       <p>
         <i>His skills are: {error.statusText || error.message}</i>
