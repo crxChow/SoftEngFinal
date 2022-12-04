@@ -1,61 +1,56 @@
 import React from "react";
-import { Controller } from "../controller/controller";
+import { redirect } from "react-router-dom";
 import { instance } from "../model/AI";
+import Model from "../model/model";
 
 const loginbutton = {
-    backgroundColor: "blue",
-    color: "white",
+  backgroundColor: "blue",
+  color: "white",
 };
 
-export default function Login(){
-    var exists;
-    function handleClick(){
-        let model = Controller(null)
-        console.log(model);
-        let userEmail = document.getElementById("user_name").value;
-		exists = model.checkDesigner(userEmail)
-        console.log(userEmail);
+export default function Login({ newModel }) {
+  function handleClick() {
+    let userEmail = document.getElementById("user_name").value;
 
+    let modelAgain = new Model();
 
-        var data = {};
-        data["email"] = userEmail;
-        
-        // to work with API gateway, I need to wrap inside a 'body'
-        var body = {}
-        body["body"] = JSON.stringify(data);
-        var js = JSON.stringify(body);
-        console.log("sent: " +js)
+    var data = {};
+    data["email"] = userEmail;
 
-        instance.post('/login', js).then((response) => {
-  
-            console.log(response.data.result);
-			
-            if(response.data.status === 200){
-                model.addDesigner(userEmail);
-            }
-            else{
-                
-            }
-        })
-	}
+    // to work with API gateway, I need to wrap inside a 'body'
+    var body = {};
+    body["body"] = JSON.stringify(data);
+    var js = JSON.stringify(body);
+    console.log("sent: " + js);
+    //let result;
+    instance.post("/login", js).then((response) => {
+      console.log(response.data.result);
+      //result = response.data.result;
 
-    function display(){
-        if(exists){
-            return "Invalid Login";
-        }
-        else{
-            return "Login Here!"
-        }
-    }
-   
-    return (
-        <div>
-        <h1>
-            { display() }
-        </h1>
-        <input type="text" id="user_name" name="email"></input>
-        <button style = {loginbutton} onClick={handleClick} >LOGIN</button>
-        </div>
-    );
-};
+      if (response.data.result === "true") {
+        //return response.data.result ?? null;
+        //model.addDesigner(username, response.data.projects);
+        modelAgain.addDesigner(userEmail);
+        console.log(modelAgain);
+        newModel(modelAgain);
+        redirect("/designer");
+      } else {
+        console.log("not in the system");
+      }
+    });
+  }
 
+  function display() {
+    return "Login Here";
+  }
+
+  return (
+    <div>
+      <h1>{display()}</h1>
+      <input type="text" id="user_name" name="email"></input>
+      <button style={loginbutton} onClick={handleClick}>
+        LOGIN
+      </button>
+    </div>
+  );
+}
