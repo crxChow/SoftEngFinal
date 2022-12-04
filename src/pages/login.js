@@ -2,6 +2,7 @@ import React from "react";
 import { redirect } from "react-router-dom";
 import { instance } from "../model/AI";
 import Model from "../model/model";
+import { useNavigate } from "react-router-dom";
 
 const loginbutton = {
   backgroundColor: "blue",
@@ -33,6 +34,7 @@ export default function Login({ newModel }) {
         modelAgain.addDesigner(userEmail);
         console.log(modelAgain);
         newModel(modelAgain);
+        console.log("blastoff");
         redirect("/designer");
       } else {
         console.log("not in the system");

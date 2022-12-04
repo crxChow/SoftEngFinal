@@ -1,9 +1,5 @@
 import React from "react";
 import { redirect } from "react-router-dom";
-import { Controller } from "../controller/controller";
-import { instance } from "../model/AI";
-import Model from "../model/model";
-import { getDesigner } from "../model/model";
 
 export default function Designer({ model }) {
   return (
