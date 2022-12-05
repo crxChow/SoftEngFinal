@@ -1,8 +1,12 @@
 import React from "react";
-import { redirect } from "react-router-dom";
+import {
+  NavLink,
+  redirect,
+  UNSAFE_enhanceManualRouteObjects,
+  useNavigate,
+} from "react-router-dom";
 import { instance } from "../model/AI";
 import Model from "../model/model";
-import { useNavigate } from "react-router-dom";
 
 const loginbutton = {
   backgroundColor: "blue",
@@ -10,7 +14,8 @@ const loginbutton = {
 };
 
 export default function Login({ newModel }) {
-  function handleClick() {
+  const navigate = useNavigate();
+  const handleClick = () => {
     let userEmail = document.getElementById("user_name").value;
 
     let modelAgain = new Model();
@@ -35,12 +40,12 @@ export default function Login({ newModel }) {
         console.log(modelAgain);
         newModel(modelAgain);
         console.log("blastoff");
-        redirect("/designer");
+        navigate("/designer");
       } else {
         console.log("not in the system");
       }
     });
-  }
+  };
 
   function display() {
     return "Login Here";

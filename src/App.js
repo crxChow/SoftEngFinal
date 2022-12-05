@@ -2,12 +2,7 @@ import React from "react";
 import Model from "./model/model.js";
 import "./App.css";
 import Navbar from "./comps/index";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  createBrowserRouter,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
@@ -26,7 +21,7 @@ function App() {
   //console.log(model);
 
   React.useEffect(() => {
-    forceRedraw(redraw + Controller(model));
+    forceRedraw(redraw);
     console.log(model);
   }, [model, redraw]);
 
@@ -37,7 +32,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login newModel={setModel} />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/designer" element={<Designer />} />
+        <Route path="/designer" element={<Designer model={model} />} />
       </Routes>
     </Router>
   );

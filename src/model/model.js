@@ -28,7 +28,6 @@ export async function getDesigner(userEmail, passModel) {
     } else {
       console.log("not in the system");
     }
-    return response.data.result === "true" ?? null;
   });
 
   //return result;
@@ -127,7 +126,6 @@ export class Project {
 export default class Model {
   constructor() {
     this.admins = new Admin();
-    this.designers = [];
     this.supporters = [];
     this.projects = [];
     //this.date = {};
@@ -136,7 +134,7 @@ export default class Model {
   addDesigner(email) {
     console.log(email);
     //this.designers.push(new Designer(email, projects));
-    this.designers.push(new Designer(email));
+    this.designer = new Designer(email);
     console.log(this.designers);
   }
 
