@@ -7,16 +7,15 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Designer from "./pages/designer";
-import { Outlet, useOutletContext } from "react-router-dom";
-import { Controller } from "./controller/controller.js";
+import Project from "./pages/projects.js";
 
 function App() {
   //const [model, setModel] = useOutletContext
   //const MyContext = React.createContext([model, setModel]);
   const [model, setModel] = React.useState(new Model());
   const [redraw, forceRedraw] = React.useState(0);
-  const appRef = React.useRef(null);
-  const canvasRef = React.useRef(null);
+  //const appRef = React.useRef(null);
+  //const canvasRef = React.useRef(null);
 
   //console.log(model);
 
@@ -33,6 +32,7 @@ function App() {
         <Route path="/login" element={<Login newModel={setModel} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/designer" element={<Designer model={model} />} />
+        <Route path="/designer/projects" element={<Project />} />
       </Routes>
     </Router>
   );

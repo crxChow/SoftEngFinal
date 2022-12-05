@@ -4,8 +4,8 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to our amazing platform</h1>
-      <h2>if this is still here chris has done nothing for the project</h2>
-      <h3>we will see</h3>
+      <h2>report any issues to chris</h2>
+      <h2>its probably his fault anyways</h2>
     </div>
   );
 };
