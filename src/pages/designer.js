@@ -13,12 +13,13 @@ const projectsbutton = {
 export default function Designer({ model }) {
   const navigate = useNavigate();
   console.log(model.designer.email);
+  console.log(model.designer.did);
   const handleMove = () => {
     let projModel = new Model();
-    projModel.addDesigner(model.designer.email);
+    projModel.addDesigner(model.designer.email, model.designer.did);
     console.log(projModel);
     var data = {};
-    data["email"] = model.designer.email;
+    data["DID"] = model.designer.did;
 
     // to work with API gateway, I need to wrap inside a 'body'
     var body = {};
@@ -28,31 +29,38 @@ export default function Designer({ model }) {
     //let result;
     instance.post("/listprojectsdes", js).then((response) => {
       console.log(response.data.result);
-      let tempProjects = JSON.parse(response.data.result);
-      console.log(tempProjects);
-      //result = response.data.result;
-      console.log(tempProjects[0].name);
-      console.log(tempProjects[0].PJID);
-      console.log(tempProjects[0].description);
-      console.log(tempProjects[0].date);
-      console.log(tempProjects[0].projtype);
-      console.log(tempProjects[0].goalAmt);
-      console.log(tempProjects[0].DID);
+
       if (response.data.status === 200) {
+        let tempProjects = JSON.parse(response.data.result);
+        console.log(tempProjects);
+        //result = response.data.result;
+
         //return response.data.result ?? null;
         //model.addDesigner(username, response.data.projects);
-        projModel.designer.addProject(
-          tempProjects[0].name,
-          tempProjects[0].PJID,
-          tempProjects[0].description,
-          tempProjects[0].date,
-          tempProjects[0].projtype,
-          tempProjects[0].goalAmt,
-          tempProjects[0].DID
-        );
-        console.log(projModel);
-        console.log("somehow we got here!");
-        navigate("/designer/projects");
+        if (tempProjects.length !== 0) {
+          console.log(tempProjects[0].name);
+          console.log(tempProjects[0].PJID);
+          console.log(tempProjects[0].description);
+          console.log(tempProjects[0].date);
+          console.log(tempProjects[0].projtype);
+          console.log(tempProjects[0].goalAmt);
+          console.log(tempProjects[0].DID);
+          projModel.designer.addProject(
+            tempProjects[0].name,
+            tempProjects[0].PJID,
+            tempProjects[0].description,
+            tempProjects[0].date,
+            tempProjects[0].projtype,
+            tempProjects[0].goalAmt,
+            tempProjects[0].DID
+          );
+          console.log(projModel);
+          console.log("somehow we got here!");
+          navigate("/designer/projects");
+        } else {
+          console.log("you got no projects bro");
+          navigate("/designer/projects");
+        }
       } else {
         console.log("error time");
       }

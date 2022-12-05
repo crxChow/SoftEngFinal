@@ -34,16 +34,21 @@ export default function Login({ newModel }) {
     //let result;
     instance.post("/login", js).then((response) => {
       console.log(response.data.result);
+      console.log(response.data);
       //result = response.data.result;
+      let tempUser = response.data.result;
+      console.log(tempUser);
 
-      if (response.data.result === "designer") {
+      if (response.data.user === "designer") {
         //return response.data.result ?? null;
         //model.addDesigner(username, response.data.projects);
-        modelAgain.addDesigner(userEmail, response.data.DID);
+        modelAgain.addDesigner(tempUser[0].email, tempUser[0].DID);
         console.log(modelAgain);
         newModel(modelAgain);
         console.log("blastoff");
         navigate("/designer");
+      } else if (response.data.user === "admin") {
+        navigate("/admin");
       } else {
         console.log("not in the system");
         navigate("/register");
