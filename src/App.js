@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import Designer from "./pages/designer";
+import Designer, { loader as projectLoader } from "./pages/designer";
 import Project from "./pages/projects.js";
 import ErrorPage from "./error-page.jsx";
 
@@ -32,7 +32,11 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login newModel={setModel} />} />
         <Route path="/register" element={<Register newModel={setModel} />} />
-        <Route path="/designer" element={<Designer model={model} />} />
+        <Route
+          path="/designer"
+          element={<Designer model={model} />}
+          loader={<projectLoader setModel={newModel}>}
+        />
         <Route path="/designer/projects" element={<Project />} />
         {/*this is the error page*/}
         <Route path="*" element={<ErrorPage />} />
