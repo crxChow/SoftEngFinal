@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const projectsbutton = {
   backgroundColor: "blue",
   color: "magenta",
+  padding: 0,
 };
 
 export default function Designer({ model }) {

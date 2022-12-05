@@ -4,11 +4,11 @@ import { instance } from "../model/AI";
 import Model from "../model/model";
 
 const loginbutton = {
-  backgroundColor: "blue",
+  backgroundColor: "#FF7E6B",
   color: "white",
 };
 const createbutton = {
-  backgroundColor: "black",
+  backgroundColor: "#6987C9",
   color: "white",
 };
 

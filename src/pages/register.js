@@ -1,20 +1,11 @@
 import React from "react";
-import { Outlet, useOutletContext, useLoaderData } from "react-router-dom";
 import { instance } from "../model/AI";
-import { useContext } from "react";
-import { Controller } from "../controller/controller";
-
-const loginbutton = {
-    backgroundColor: "blue",
-    color: "white",
-};
+import Model from "../model/model";
 
 const registerButton = {
-backgroundColor: "gold",
-height: 40,
-width: 150,
-color: "black",
-}
+  backgroundColor: "#FF7E6B",
+  color: "white",
+};
 
 /*
 export async function loader({ params}){
@@ -23,40 +14,42 @@ export async function loader({ params}){
 }
 */
 //class Register extends React.Component{
-export default function Register(){
-    //const model = useLoaderData();
-	//const [model, setModel] = useOutletContext();
-	
-    
-    function handleClick(){
-        let model = Controller(null)
-        console.log(model);
-        let userEmail = document.getElementById("user_name").value;
-		model.addDesigner(userEmail)
-        
-        instance.post('/registerdesigner', userEmail).then((response) => {
-            console.log(response);
-			
-            if(response.status === 200){
-                model.addDesigner(response.user_name);
-            }
-            else{
-                
-            }
-        })
-	}
+export default function Register({ newModel }) {
+  //const model = useLoaderData();
+  //const [model, setModel] = useOutletContext();
 
-	return (
-	<div>
-	<h1>
-		register designer here!
-	</h1>
-    <input type="text" id="user_name" name="email"></input>
-    <button style = {registerButton} onClick={handleClick}>REGISTER DESIGNER</button>
-    
-	</div>
-	);
-};
+  const handleClick = () => {
+    let userEmail = document.getElementById("user_name").value;
+    let modelAgain = new Model();
+    var data = {};
+    data["email"] = userEmail;
+
+    // to work with API gateway, I need to wrap inside a 'body'
+    var body = {};
+    body["body"] = JSON.stringify(data);
+    var js = JSON.stringify(body);
+
+    instance.post("/registerdesigner", js).then((response) => {
+      console.log(response);
+
+      if (response.status === 200) {
+        modelAgain.addDesigner(response.user_name);
+        console.log(modelAgain);
+      } else {
+        console.log("oops");
+      }
+    });
+  };
+
+  return (
+    <div>
+      <h1>register a new user here!</h1>
+      <input type="text" id="user_name" name="email"></input>
+      <button style={registerButton} onClick={handleClick}>
+        REGISTER DESIGNER
+      </button>
+    </div>
+  );
+}
 
 //export default Register;
-

@@ -8,6 +8,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Designer from "./pages/designer";
 import Project from "./pages/projects.js";
+import ErrorPage from "./error-page.jsx";
 
 function App() {
   //const [model, setModel] = useOutletContext
@@ -30,9 +31,11 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login newModel={setModel} />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/register" element={<Register newModel={setModel} />} />
         <Route path="/designer" element={<Designer model={model} />} />
         <Route path="/designer/projects" element={<Project />} />
+        {/*this is the error page*/}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </Router>
   );
