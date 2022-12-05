@@ -30,10 +30,12 @@ export default function Register({ newModel }) {
     var js = JSON.stringify(body);
 
     instance.post("/registerdesigner", js).then((response) => {
-      console.log(response);
+      console.log(response.data.result);
+      let tempResponse = response.data.result;
+      console.log(tempResponse);
 
       if (response.status === 200) {
-        modelAgain.addDesigner(response.user_name);
+        modelAgain.addDesigner(tempResponse[0].email, tempResponse[0].DID);
         console.log(modelAgain);
       } else {
         console.log("oops");

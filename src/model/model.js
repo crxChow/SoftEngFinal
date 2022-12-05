@@ -1,44 +1,25 @@
-import { instance } from "./AI";
+//import { instance } from "./AI";
 //hard coded admin. use the email admin@cs.org to login
 export class Admin {
   constructor() {
     this.email = "admin@cs.com";
   }
 }
-
-export async function getDesigner(userEmail, passModel) {
-  var data = {};
-  data["email"] = userEmail;
-
-  // to work with API gateway, I need to wrap inside a 'body'
-  var body = {};
-  body["body"] = JSON.stringify(data);
-  var js = JSON.stringify(body);
-  console.log("sent: " + js);
-  //let result;
-  instance.post("/login", js).then((response) => {
-    console.log(response.data.result);
-    //result = response.data.result;
-
-    if (response.data.result === "true") {
-      //return response.data.result ?? null;
-      //model.addDesigner(username, response.data.projects);
-      passModel.addDesigner(userEmail);
-      console.log(passModel);
-    } else {
-      console.log("not in the system");
-    }
-  });
-
-  //return result;
-}
 export class Designer {
   /*constructor(email, projects) {
     this.email = email;
     this.projects = projects;
   }*/
-  constructor(email) {
+  constructor(email, did) {
     this.email = email;
+    this.did = did;
+    this.projects = [];
+  }
+
+  addProject(name, pid, description, date, projecttype, goal, did) {
+    this.projects.push(
+      new Project(name, pid, description, date, projecttype, goal, did)
+    );
   }
 }
 
@@ -89,8 +70,9 @@ export class DirectSupport {
 }
 
 export class Project {
-  constructor(name, description, date, projecttype, goal, designer) {
+  constructor(name, pid, description, date, projecttype, goal, designer) {
     this.name = name;
+    this.pid = pid;
     this.description = description;
     this.date = date;
     this.projecttype = projecttype;
@@ -126,15 +108,15 @@ export class Project {
 export default class Model {
   constructor() {
     this.admins = new Admin();
-    this.supporters = [];
-    this.projects = [];
+    //this.supporters = [];
+    //this.projects = [];
     //this.date = {};
   }
 
-  addDesigner(email) {
-    console.log(email);
+  addDesigner(email, did) {
+    console.log(email, did);
     //this.designers.push(new Designer(email, projects));
-    this.designer = new Designer(email);
+    this.designer = new Designer(email, did);
     console.log(this.designers);
   }
 

@@ -39,7 +39,7 @@ export default function Login({ newModel }) {
       if (response.data.result === "designer") {
         //return response.data.result ?? null;
         //model.addDesigner(username, response.data.projects);
-        modelAgain.addDesigner(userEmail);
+        modelAgain.addDesigner(userEmail, response.data.DID);
         console.log(modelAgain);
         newModel(modelAgain);
         console.log("blastoff");
