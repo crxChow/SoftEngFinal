@@ -25,6 +25,7 @@ export default function Project({ curModel }) {
           )}
         </nav>
       </div>
+      
     </>
   );
 }

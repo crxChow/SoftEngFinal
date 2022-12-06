@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { instance } from "../model/AI";
 import Model from "../model/model";
 //import { useLoaderData } from "react-router-dom";
@@ -10,10 +10,13 @@ const projectsbutton = {
   padding: 0,
 };
 
+
+
 export default function Designer({ newModel }) {
   const navigate = useNavigate();
   console.log(newModel.designer.email);
   console.log(newModel.designer.did);
+  const projects = newModel.projects;
   const handleMove = () => {
     let projModel = new Model();
     projModel.addDesigner(newModel.designer.email, newModel.designer.did);
@@ -61,10 +64,10 @@ export default function Designer({ newModel }) {
           console.log(projModel);
           console.log("somehow we got here!");
           newModel(projModel);
-          navigate("/designer/projects");
+          navigate("/designer");
         } else {
           console.log("you got no projects bro");
-          navigate("/designer/projects");
+          navigate("/designer");
         }
       } else {
         console.log("error time");
@@ -72,11 +75,33 @@ export default function Designer({ newModel }) {
     });
   };
   return (
+    <>
     <div>
       <h1>Welcome {newModel.designer.email}</h1>
       <button style={projectsbutton} onClick={handleMove}>
         List Projects
       </button>
     </div>
+    <div>
+    <nav>
+      {projects.length ? (
+        <ul>
+          {projects.map((project) => (
+            <li key={project.id}>
+              <Link to={`projects/${project.pid}`}>
+                {project.name ? <>{project.name}</> : <i>No Name</i>}
+                {""}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>
+          <i>No Projects</i>
+        </p>
+      )}
+    </nav>
+  </div>
+</>
   );
 }

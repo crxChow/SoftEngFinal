@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../model/AI";
 import Model from "../model/model";
+import { awsInstance, mockAwsInstance } from "../Mock/aws";
 
 const loginbutton = {
   backgroundColor: "#FF7E6B",
@@ -32,7 +33,7 @@ export default function Login({ newModel }) {
     var js = JSON.stringify(body);
     console.log("sent: " + js);
     //let result;
-    instance.post("/login", js).then((response) => {
+    awsInstance.post("/login", js).then((response) => {
       console.log(response.data.result);
       console.log(response.data);
       //result = response.data.result;

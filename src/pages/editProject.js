@@ -2,11 +2,12 @@ import Model from "../model/model";
 
 export default function Edit({ curModel }) {
   console.log(curModel);
-  const projects = curModel.projects;
+  
   let val;
 
   function handleMove() {
-    let EditModel = new Model();
+    let EditModel = Object.assign({}, curModel);
+    console.log(EditModel);
   }
 
   function handleChange() {

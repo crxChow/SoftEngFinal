@@ -36,7 +36,7 @@ function App() {
         <Route path="/register" element={<Register newModel={setModel} />} />
         <Route path="/designer" element={<Designer newModel={setModel} />} />
         <Route
-          path="/designer/projects"
+          path="/designer/projects/:projectID"
           element={<Project curModel={model} />}
         />
         <Route
