@@ -10,16 +10,16 @@ const projectsbutton = {
   padding: 0,
 };
 
-export default function Designer({ model }) {
+export default function Designer({ newModel }) {
   const navigate = useNavigate();
-  console.log(model.designer.email);
-  console.log(model.designer.did);
+  console.log(newModel.designer.email);
+  console.log(newModel.designer.did);
   const handleMove = () => {
     let projModel = new Model();
-    projModel.addDesigner(model.designer.email, model.designer.did);
+    projModel.addDesigner(newModel.designer.email, newModel.designer.did);
     console.log(projModel);
     var data = {};
-    data["DID"] = model.designer.did;
+    data["DID"] = newModel.designer.did;
 
     // to work with API gateway, I need to wrap inside a 'body'
     var body = {};
@@ -38,24 +38,29 @@ export default function Designer({ model }) {
         //return response.data.result ?? null;
         //model.addDesigner(username, response.data.projects);
         if (tempProjects.length !== 0) {
-          console.log(tempProjects[0].name);
-          console.log(tempProjects[0].PJID);
-          console.log(tempProjects[0].description);
-          console.log(tempProjects[0].date);
-          console.log(tempProjects[0].projtype);
-          console.log(tempProjects[0].goalAmt);
-          console.log(tempProjects[0].DID);
-          projModel.designer.addProject(
-            tempProjects[0].name,
-            tempProjects[0].PJID,
-            tempProjects[0].description,
-            tempProjects[0].date,
-            tempProjects[0].projtype,
-            tempProjects[0].goalAmt,
-            tempProjects[0].DID
-          );
+          for (let i = 0; i < tempProjects.length; i++) {
+            console.log(tempProjects[i].name);
+            console.log(tempProjects[i].PJID);
+            console.log(tempProjects[i].description);
+            console.log(tempProjects[i].date);
+            console.log(tempProjects[i].projtype);
+            console.log(tempProjects[i].goalAmt);
+            console.log(tempProjects[i].DID);
+
+            projModel.designer.addProject(
+              tempProjects[i].name,
+              tempProjects[i].PJID,
+              tempProjects[i].description,
+              tempProjects[i].date,
+              tempProjects[i].projtype,
+              tempProjects[i].goalAmt,
+              tempProjects[i].DID
+            );
+          }
+          //dont delete
           console.log(projModel);
           console.log("somehow we got here!");
+          newModel(projModel);
           navigate("/designer/projects");
         } else {
           console.log("you got no projects bro");
@@ -68,7 +73,7 @@ export default function Designer({ model }) {
   };
   return (
     <div>
-      <h1>Welcome {model.designer.email}</h1>
+      <h1>Welcome {newModel.designer.email}</h1>
       <button style={projectsbutton} onClick={handleMove}>
         List Projects
       </button>

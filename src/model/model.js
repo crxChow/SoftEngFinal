@@ -109,7 +109,7 @@ export default class Model {
   constructor() {
     this.admins = new Admin();
     //this.supporters = [];
-    //this.projects = [];
+    this.projects = [];
     //this.date = {};
   }
 
@@ -120,9 +120,9 @@ export default class Model {
     console.log(this.designer);
   }
 
-  addProject(name, description, date, projecttype, goal, designer) {
+  addProject(name, pid, description, date, projecttype, goal, designer) {
     this.projects.push(
-      new Project(name, description, date, projecttype, goal, designer)
+      new Project(name, pid, description, date, projecttype, goal, designer)
     );
   }
 
