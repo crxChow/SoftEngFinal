@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Model from "./model/model.js";
 import "./App.css";
 import Navbar from "./comps/index";
@@ -10,21 +10,20 @@ import Designer from "./pages/designer";
 import Project from "./pages/projects.js";
 import ErrorPage from "./error-page.jsx";
 import Admin from "./pages/admin.js";
-import Edit from "./pages/editProject.js";
-import "./Mock/mock.js";
-
+//import Edit from "./pages/editProject.js";
+//import "./mock/mock.js";
 
 function App() {
   //const [model, setModel] = useOutletContext
   //const MyContext = React.createContext([model, setModel]);
-  const [model, setModel] = React.useState(new Model());
+  const [model, setModel] = useState(new Model());
   const [redraw, forceRedraw] = React.useState(0);
   //const appRef = React.useRef(null);
   //const canvasRef = React.useRef(null);
 
   //console.log(model);
 
-  React.useEffect(() => {
+  useEffect(() => {
     forceRedraw(redraw);
     console.log(model);
   }, [model, redraw]);
@@ -34,17 +33,10 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/login" element={<Login newModel={setModel} />} />
+        <Route path="/login" element={<Login newerModel={setModel} />} />
         <Route path="/register" element={<Register newModel={setModel} />} />
-        <Route path="/designer" element={<Designer newModel={setModel} />} />
-        <Route
-          path="/designer/projects/:projectID"
-          element={<Project curModel={model} />}
-        />
-        <Route
-          path="/designer/projects/editProject"
-          element={<Edit newModel={setModel} />}
-        />
+        <Route path="/designer" element={<Designer model={model} />} />
+        <Route path="/designer/projects" element={<Project />} />
         <Route path="/admin" element={<Admin />} />
         {/*this is the error page*/}
         <Route path="*" element={<ErrorPage />} />

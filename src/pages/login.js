@@ -2,8 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../model/AI";
 import Model from "../model/model";
-import { awsInstance } from "../Mock/aws";
-
+import { awsInstance, mockAwsInstance } from "../mock/aws";
+import "../mock/mock";
 const loginbutton = {
   backgroundColor: "#FF7E6B",
   color: "white",
@@ -13,7 +13,7 @@ const createbutton = {
   color: "white",
 };
 
-export default function Login({ newModel }) {
+export default function Login({ newerModel }) {
   const navigate = useNavigate();
   const handleMove = () => {
     console.log("bye bitch");
@@ -33,10 +33,13 @@ export default function Login({ newModel }) {
     var js = JSON.stringify(body);
     console.log("sent: " + js);
     //let result;
-    awsInstance.post("/login", js).then((response) => {
+    instance.post("/login", js).then((response) => {
       console.log(response.data.result);
       console.log(response.data);
+      console.log(response);
       //result = response.data.result;
+
+      //FIX WHEN MOVING FROM MOCK
       let tempUser = response.data.result;
       console.log(tempUser);
 
@@ -45,7 +48,8 @@ export default function Login({ newModel }) {
         //model.addDesigner(username, response.data.projects);
         modelAgain.addDesigner(tempUser[0].email, tempUser[0].DID);
         console.log(modelAgain);
-        newModel(modelAgain);
+        newerModel(modelAgain);
+        console.log("there should be a model aove this");
         console.log("blastoff");
         navigate("/designer");
       } else if (response.data.user === "admin") {

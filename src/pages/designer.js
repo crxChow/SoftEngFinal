@@ -10,19 +10,18 @@ const projectsbutton = {
   padding: 0,
 };
 
-
-
-export default function Designer({ newModel }) {
+export default function Designer({ model }) {
+  console.log(model);
   const navigate = useNavigate();
-  console.log(newModel.designer.email);
-  console.log(newModel.designer.did);
-  const projects = newModel.projects;
+  console.log(model.designer.email);
+  console.log(model.designer.did);
+  const projects = model.projects;
   const handleMove = () => {
     let projModel = new Model();
-    projModel.addDesigner(newModel.designer.email, newModel.designer.did);
+    projModel.addDesigner(model.designer.email, model.designer.did);
     console.log(projModel);
     var data = {};
-    data["DID"] = newModel.designer.did;
+    data["DID"] = model.designer.did;
 
     // to work with API gateway, I need to wrap inside a 'body'
     var body = {};
@@ -63,7 +62,7 @@ export default function Designer({ newModel }) {
           //dont delete
           console.log(projModel);
           console.log("somehow we got here!");
-          newModel(projModel);
+          //newModel(projModel);
           navigate("/designer");
         } else {
           console.log("you got no projects bro");
@@ -75,33 +74,35 @@ export default function Designer({ newModel }) {
     });
   };
   return (
-    <>
     <div>
-      <h1>Welcome {newModel.designer.email}</h1>
+      <h1>Welcome {model.designer.email}</h1>
       <button style={projectsbutton} onClick={handleMove}>
         List Projects
       </button>
     </div>
-    <div>
-    <nav>
-      {projects.length ? (
-        <ul>
-          {projects.map((project) => (
-            <li key={project.id}>
-              <Link to={`projects/${project.pid}`}>
-                {project.name ? <>{project.name}</> : <i>No Name</i>}
-                {""}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>
-          <i>No Projects</i>
-        </p>
-      )}
-    </nav>
-  </div>
-</>
   );
 }
+
+/*
+<div>
+        <nav>
+          {projects.length ? (
+            <ul>
+              {projects.map((project) => (
+                <li key={project.id}>
+                  <Link to={`projects/${project.pid}`}>
+                    {project.name ? <>{project.name}</> : <i>No Name</i>}
+                    {""}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>
+              <i>No Projects</i>
+            </p>
+          )}
+        </nav>
+      </div>
+    </>
+    */

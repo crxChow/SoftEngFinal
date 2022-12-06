@@ -1,13 +1,13 @@
 import Model from "../model/model";
-
+/*
 export default function Edit({ curModel }) {
   console.log(curModel);
-  
+
   let val;
 
   function handleMove() {
-    let EditModel = Object.assign({}, curModel);
-    console.log(EditModel);
+    //let EditModel = Object.assign({}, curModel);
+    //console.log(EditModel);
   }
 
   function handleChange() {
@@ -24,3 +24,4 @@ export default function Edit({ curModel }) {
     </form>
   );
 }
+*/
