@@ -11,6 +11,8 @@ import Project from "./pages/projects.js";
 import ErrorPage from "./error-page.jsx";
 import Admin from "./pages/admin.js";
 import Edit from "./pages/editProject.js";
+import "./Mock/mock.js";
+
 
 function App() {
   //const [model, setModel] = useOutletContext

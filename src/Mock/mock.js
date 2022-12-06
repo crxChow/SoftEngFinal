@@ -1,9 +1,9 @@
-import { mockAwsInstance } from "./Mock/aws"
+import { mockAwsInstance } from "./Mock/aws.js"
 
 // There are three API calls to be mocked. Note: because of game play, you can't
 // actually get to the 'finish' because mock is not going to work
 // "result":[{"email":"johnwick@gmail.com","DID":"something"}],"user":"designer","status":200}
- mockAwsInstance.onPost('/login').reply(200, { email: "johnwick@gmail.com", DID:"something", user:"designer" })
+ mockAwsInstance.onPost('/login').reply(200, { email: "johnwick@gmail.com", DID:"something", user:"designer" });
 
  // This mocks the repeated behavior on 'guess' with a sequence of calls. The fact
  // that this actually works is a bit astounding
@@ -12,7 +12,7 @@ import { mockAwsInstance } from "./Mock/aws"
      .onPost('/guess')
      .replyOnce(200, { correct: [ ], guess: 'x'} )
      .onPost('/guess')
-     .replyOnce(200, { correct: [{index:2}], guess: 's'} )
+     .replyOnce(200, { correct: [{index:2}], guesss: 's'} )
      .onPost('/guess')
      .replyOnce(200, { correct: [{index:0}, {index:3}], guess: 't'} )
      .onPost('/guess')

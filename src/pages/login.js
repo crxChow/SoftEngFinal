@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { instance } from "../model/AI";
 import Model from "../model/model";
-import { awsInstance, mockAwsInstance } from "../Mock/aws";
+import { awsInstance } from "../Mock/aws";
 
 const loginbutton = {
   backgroundColor: "#FF7E6B",
