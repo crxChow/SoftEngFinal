@@ -17,6 +17,23 @@ export default function Designer({ newerModel, changeModel }) {
   console.log(newerModel.designer.did);
   const projects = newerModel.designer.projects;
   console.log(projects);
+
+  const handleEdit = () => {
+    let projModel = new Model();
+    projModel.addDesigner(newerModel.designer.email, newerModel.designer.did);
+    console.log(projModel);
+    var data = {};
+    data["DID"] = newerModel.designer.did;
+
+    // to work with API gateway, I need to wrap inside a 'body'
+    var body = {};
+    body["body"] = JSON.stringify(data);
+    var js = JSON.stringify(body);
+    console.log("sent: " + js);
+    
+    navigate("/designer/projects/edit");
+
+  };
   const handleMove = () => {
     let projModel = new Model();
     projModel.addDesigner(newerModel.designer.email, newerModel.designer.did);
@@ -42,20 +59,20 @@ export default function Designer({ newerModel, changeModel }) {
         //model.addDesigner(username, response.data.projects);
         if (tempProjects.length !== 0) {
           for (let i = 0; i < tempProjects.length; i++) {
-            console.log(tempProjects[i].name);
+            /*console.log(tempProjects[i].name);
             console.log(tempProjects[i].PJID);
             console.log(tempProjects[i].description);
             console.log(tempProjects[i].date);
             console.log(tempProjects[i].projtype);
             console.log(tempProjects[i].goalAmt);
-            console.log(tempProjects[i].DID);
+            console.log(tempProjects[i].DID);*/
 
             projModel.designer.addProject(
               tempProjects[i].name,
               tempProjects[i].PJID,
               tempProjects[i].description,
               tempProjects[i].date,
-              tempProjects[i].projtype,
+              tempProjects[i].projType,
               tempProjects[i].goalAmt,
               tempProjects[i].DID
             );
@@ -81,6 +98,9 @@ export default function Designer({ newerModel, changeModel }) {
         <button style={projectsbutton} onClick={handleMove}>
           List Projects
         </button>
+        <button style={projectsbutton} onClick={handleEdit}>
+          Create Project
+        </button>
       </div>
       <div>
         <nav>
@@ -97,7 +117,7 @@ export default function Designer({ newerModel, changeModel }) {
             </ul>
           ) : (
             <p>
-              <i>No Projects</i>
+              <i>You Got No Projects Bro</i>
             </p>
           )}
         </nav>
@@ -106,6 +126,3 @@ export default function Designer({ newerModel, changeModel }) {
   );
 }
 
-/*
-
-    */

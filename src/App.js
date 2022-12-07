@@ -10,7 +10,7 @@ import Designer from "./pages/designer";
 import Project from "./pages/projects.js";
 import ErrorPage from "./error-page.jsx";
 import Admin from "./pages/admin.js";
-//import Edit from "./pages/editProject.js";
+import Edit from "./pages/editProject.js";
 //import "./mock/mock.js";
 
 function App() {
@@ -47,6 +47,11 @@ function App() {
           element={<Designer newerModel={model} changeModel={setModel} />}
         />
         <Route path="/designer/projects/:projectID" element={<Project />} />
+
+        <Route
+          path="/designer/projects/edit"
+          element={<Edit evennewerModel={model} changingModel={setModel}/>}
+        />
         <Route path="/admin" element={<Admin />} />
         {/*this is the error page*/}
         <Route path="*" element={<ErrorPage />} />

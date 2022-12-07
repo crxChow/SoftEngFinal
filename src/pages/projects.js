@@ -4,7 +4,7 @@ export default function Project({ curModel }) {
   return (
     <>
       <div>
-        <h1>CODE GOD</h1>
+        <h1>GABE IS A Nice Guy</h1>
       </div>
     </>
   );
