@@ -10,18 +10,19 @@ const projectsbutton = {
   padding: 0,
 };
 
-export default function Designer({ model }) {
-  console.log(model);
+export default function Designer({ newerModel, changeModel }) {
+  console.log(newerModel);
   const navigate = useNavigate();
-  console.log(model.designer.email);
-  console.log(model.designer.did);
-  const projects = model.projects;
+  console.log(newerModel.designer.email);
+  console.log(newerModel.designer.did);
+  const projects = newerModel.designer.projects;
+  console.log(projects);
   const handleMove = () => {
     let projModel = new Model();
-    projModel.addDesigner(model.designer.email, model.designer.did);
+    projModel.addDesigner(newerModel.designer.email, newerModel.designer.did);
     console.log(projModel);
     var data = {};
-    data["DID"] = model.designer.did;
+    data["DID"] = newerModel.designer.did;
 
     // to work with API gateway, I need to wrap inside a 'body'
     var body = {};
@@ -62,7 +63,7 @@ export default function Designer({ model }) {
           //dont delete
           console.log(projModel);
           console.log("somehow we got here!");
-          //newModel(projModel);
+          changeModel(projModel);
           navigate("/designer");
         } else {
           console.log("you got no projects bro");
@@ -74,17 +75,14 @@ export default function Designer({ model }) {
     });
   };
   return (
-    <div>
-      <h1>Welcome {model.designer.email}</h1>
-      <button style={projectsbutton} onClick={handleMove}>
-        List Projects
-      </button>
-    </div>
-  );
-}
-
-/*
-<div>
+    <>
+      <div>
+        <h1>Welcome {newerModel.designer.email}</h1>
+        <button style={projectsbutton} onClick={handleMove}>
+          List Projects
+        </button>
+      </div>
+      <div>
         <nav>
           {projects.length ? (
             <ul>
@@ -105,4 +103,9 @@ export default function Designer({ model }) {
         </nav>
       </div>
     </>
+  );
+}
+
+/*
+
     */

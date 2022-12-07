@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Model from "./model/model.js";
 import "./App.css";
 import Navbar from "./comps/index";
@@ -28,6 +28,13 @@ function App() {
     console.log(model);
   }, [model, redraw]);
 
+  const updateModel = useCallback(
+    ({ newModel }) => {
+      setModel(newModel);
+    },
+    [model]
+  );
+
   return (
     <Router>
       <Navbar />
@@ -35,8 +42,11 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/login" element={<Login newerModel={setModel} />} />
         <Route path="/register" element={<Register newModel={setModel} />} />
-        <Route path="/designer" element={<Designer model={model} />} />
-        <Route path="/designer/projects" element={<Project />} />
+        <Route
+          path="/designer"
+          element={<Designer newerModel={model} changeModel={setModel} />}
+        />
+        <Route path="/designer/projects/:projectID" element={<Project />} />
         <Route path="/admin" element={<Admin />} />
         {/*this is the error page*/}
         <Route path="*" element={<ErrorPage />} />
