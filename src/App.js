@@ -59,7 +59,10 @@ function App() {
           path="/designer/projects/:projectID/create"
           element={<CreatePledge pledgeModel={model} pModel={setModel} />}
         />
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="/admin"
+          element={<Admin adminCurModel={model} adminChangeModel={setModel} />}
+        />
         {/*this is the error page*/}
         <Route path="*" element={<ErrorPage />} />
       </Routes>

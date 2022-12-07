@@ -132,9 +132,9 @@ export default class Model {
     console.log(this.supporter);
   }
 
-  addProject(name, pid, description, date, projecttype, goal, designer) {
+  addProject(name, pid, description, date, projecttype, goal, did) {
     this.projects.push(
-      new Project(name, pid, description, date, projecttype, goal, designer)
+      new Project(name, pid, description, date, projecttype, goal, did)
     );
   }
 

@@ -69,6 +69,7 @@ export default function Login({ newerModel }) {
         navigate("/supporter");
       } else {
         console.log("not in the system");
+        newerModel(modelAgain);
         navigate("/register");
       }
     });
