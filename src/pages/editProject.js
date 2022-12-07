@@ -49,7 +49,7 @@ export default function Edit({ evennewerModel, changingModel}) {
           navigate("/designer");
         } else{
           console.log("create better");
-          navigate("/designer/project/edit");
+          navigate("/designer/projects/edit");
         }
       } else{
         console.log("error time");

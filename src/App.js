@@ -11,6 +11,7 @@ import Project from "./pages/projects.js";
 import ErrorPage from "./error-page.jsx";
 import Admin from "./pages/admin.js";
 import Edit from "./pages/editProject.js";
+import CreatePledge from "./pages/createPledge.js";
 //import "./mock/mock.js";
 
 function App() {
@@ -51,6 +52,11 @@ function App() {
         <Route
           path="/designer/projects/edit"
           element={<Edit evennewerModel={model} changingModel={setModel}/>}
+        />
+
+        <Route
+          path="/designer/projects/:projectID/create"
+          element={<CreatePledge pledgeModel={model} pModel={setModel}/>}
         />
         <Route path="/admin" element={<Admin />} />
         {/*this is the error page*/}

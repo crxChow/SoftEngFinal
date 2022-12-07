@@ -44,7 +44,7 @@ export default function Login({ newerModel }) {
       if (response.data.user === "designer") {
         //return response.data.result ?? null;
         //model.addDesigner(username, response.data.projects);
-        modelAgain.addDesigner(tempUser[0].email, tempUser[0].DID);
+        modelAgain.addDesigner(tempUser[0].email, tempUser[0].DID, tempUser[0].namem, tempUser[0].password);
         console.log(modelAgain);
         newerModel(modelAgain);
         console.log("there should be a model aove this");

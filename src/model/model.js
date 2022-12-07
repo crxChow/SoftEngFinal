@@ -10,9 +10,11 @@ export class Designer {
     this.email = email;
     this.projects = projects;
   }*/
-  constructor(email, did) {
+  constructor(email, did, name, password) {
     this.email = email;
     this.did = did;
+    this.name = name;
+    this.password = password;
     this.projects = [];
   }
 
@@ -24,8 +26,10 @@ export class Designer {
 }
 
 export class Supporter {
-  constructor(email) {
+  constructor(email, name, password) {
     this.email = email;
+    this.name = name;
+    this.password = password;
     this.budget = 2000;
     this.pledges = [];
     this.directSupport = [];
@@ -40,8 +44,9 @@ export class Supporter {
 
 export class Pledge {
   //rewardless constructor
-  constructor(name, amount, maxSupport) {
+  constructor(name, plid, amount, maxSupport) {
     this.name = name;
+    this.plid = plid;
     this.amount = amount;
     this.maxSupport = maxSupport;
     this.supporters = [];
@@ -113,10 +118,10 @@ export default class Model {
     //this.date = {};
   }
 
-  addDesigner(email, did) {
-    console.log(email, did);
+  addDesigner(email, did, Newname, password) {
+    console.log(email, did, Newname);
     //this.designers.push(new Designer(email, projects));
-    this.designer = new Designer(email, did);
+    this.designer = new Designer(email, did, Newname, password);
     console.log(this.designer);
   }
 

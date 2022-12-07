@@ -19,17 +19,7 @@ export default function Designer({ newerModel, changeModel }) {
   console.log(projects);
 
   const handleEdit = () => {
-    let projModel = new Model();
-    projModel.addDesigner(newerModel.designer.email, newerModel.designer.did);
-    console.log(projModel);
-    var data = {};
-    data["DID"] = newerModel.designer.did;
-
-    // to work with API gateway, I need to wrap inside a 'body'
-    var body = {};
-    body["body"] = JSON.stringify(data);
-    var js = JSON.stringify(body);
-    console.log("sent: " + js);
+    
     
     navigate("/designer/projects/edit");
 
@@ -117,7 +107,7 @@ export default function Designer({ newerModel, changeModel }) {
             </ul>
           ) : (
             <p>
-              <i>You Got No Projects Bro</i>
+              <i>You GotNo Projects Bro</i>
             </p>
           )}
         </nav>

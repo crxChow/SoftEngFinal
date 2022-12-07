@@ -1,22 +1,16 @@
 import React from "react";
 import { instance } from "../model/AI";
 import Model from "../model/model";
+import { useNavigate } from "react-router-dom";
 
 const registerButton = {
   backgroundColor: "#FF7E6B",
   color: "white",
 };
 
-/*
-export async function loader({ params}){
-    const model = getModel(params.model)
-    return { model };
-}
-*/
-//class Register extends React.Component{
+
 export default function Register({ newModel }) {
-  //const model = useLoaderData();
-  //const [model, setModel] = useOutletContext();
+  const navigate = useNavigate();
 
   const handleClick = () => {
     let userEmail = document.getElementById("user_name").value;
@@ -35,8 +29,9 @@ export default function Register({ newModel }) {
       console.log(tempResponse);
 
       if (response.status === 200) {
-        modelAgain.addDesigner(tempResponse[0].email, tempResponse[0].DID);
+        modelAgain.addDesigner(tempResponse[0].email, tempResponse[0].DID, tempResponse[0].name);
         console.log(modelAgain);
+        navigate("/login");
       } else {
         console.log("oops");
       }
