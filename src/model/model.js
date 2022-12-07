@@ -26,8 +26,9 @@ export class Designer {
 }
 
 export class Supporter {
-  constructor(email, name, password) {
+  constructor(email, sid, name, password) {
     this.email = email;
+    this.sid = sid;
     this.name = name;
     this.password = password;
     this.budget = 2000;
@@ -123,6 +124,12 @@ export default class Model {
     //this.designers.push(new Designer(email, projects));
     this.designer = new Designer(email, did, Newname, password);
     console.log(this.designer);
+  }
+  addSupporter(email, sid, Newname, password) {
+    console.log(email, sid, Newname);
+    //this.designers.push(new Designer(email, projects));
+    this.supporter = new Supporter(email, sid, Newname, password);
+    console.log(this.supporter);
   }
 
   addProject(name, pid, description, date, projecttype, goal, designer) {

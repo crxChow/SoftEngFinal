@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import Model from "./model/model.js";
 import "./App.css";
 import Navbar from "./comps/index";
@@ -7,6 +7,7 @@ import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import Designer from "./pages/designer";
+import Supporter from "./pages/supporter.js";
 import Project from "./pages/projects.js";
 import ErrorPage from "./error-page.jsx";
 import Admin from "./pages/admin.js";
@@ -29,13 +30,6 @@ function App() {
     console.log(model);
   }, [model, redraw]);
 
-  const updateModel = useCallback(
-    ({ newModel }) => {
-      setModel(newModel);
-    },
-    [model]
-  );
-
   return (
     <Router>
       <Navbar />
@@ -47,16 +41,23 @@ function App() {
           path="/designer"
           element={<Designer newerModel={model} changeModel={setModel} />}
         />
-        <Route path="/designer/projects/:projectID" element={<Project niceModel={model} />} />
+        <Route
+          path="/supporter"
+          element={<Supporter supModel={model} supChangeModel={setModel} />}
+        />
+        <Route
+          path="/designer/projects/:projectID"
+          element={<Project niceModel={model} dopeModel={setModel} />}
+        />
 
         <Route
           path="/designer/projects/edit"
-          element={<Edit evennewerModel={model} changingModel={setModel}/>}
+          element={<Edit evennewerModel={model} changingModel={setModel} />}
         />
 
         <Route
           path="/designer/projects/:projectID/create"
-          element={<CreatePledge pledgeModel={model} pModel={setModel}/>}
+          element={<CreatePledge pledgeModel={model} pModel={setModel} />}
         />
         <Route path="/admin" element={<Admin />} />
         {/*this is the error page*/}

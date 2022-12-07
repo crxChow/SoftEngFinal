@@ -44,7 +44,12 @@ export default function Login({ newerModel }) {
       if (response.data.user === "designer") {
         //return response.data.result ?? null;
         //model.addDesigner(username, response.data.projects);
-        modelAgain.addDesigner(tempUser[0].email, tempUser[0].DID, tempUser[0].namem, tempUser[0].password);
+        modelAgain.addDesigner(
+          tempUser[0].email,
+          tempUser[0].DID,
+          tempUser[0].name,
+          tempUser[0].password
+        );
         console.log(modelAgain);
         newerModel(modelAgain);
         console.log("there should be a model aove this");
@@ -52,6 +57,16 @@ export default function Login({ newerModel }) {
         navigate("/designer");
       } else if (response.data.user === "admin") {
         navigate("/admin");
+      } else if (response.data.user === "supporter") {
+        modelAgain.addSupporter(
+          tempUser[0].email,
+          tempUser[0].SID,
+          tempUser[0].name,
+          tempUser[0].password
+        );
+        newerModel(modelAgain);
+        console.log("SUPPORTER LOGGED IN");
+        navigate("/supporter");
       } else {
         console.log("not in the system");
         navigate("/register");
