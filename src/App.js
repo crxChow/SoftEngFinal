@@ -46,7 +46,7 @@ function App() {
           path="/designer"
           element={<Designer newerModel={model} changeModel={setModel} />}
         />
-        <Route path="/designer/projects/:projectID" element={<Project />} />
+        <Route path="/designer/projects/:projectID" element={<Project niceModel={model} />} />
 
         <Route
           path="/designer/projects/edit"
