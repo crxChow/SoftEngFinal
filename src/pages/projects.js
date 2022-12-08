@@ -5,9 +5,9 @@ import { instance } from "../model/AI";
 import { Project } from "../model/model";
 
 const projectsbutton = {
-  backgroundColor: "blue",
-  color: "magenta",
-  padding: 0,
+  backgroundColor: "#6987c9",
+  color: "white",
+  padding: 5,
 };
 
 export default function ProjectPage({ niceModel, dopeModel }) {

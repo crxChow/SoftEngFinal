@@ -4,10 +4,23 @@ import { instance } from "../model/AI";
 import Model from "../model/model";
 //import { useLoaderData } from "react-router-dom";
 
+const welcomeBar = {
+  marginLeft: 70,
+};
 const projectsbutton = {
-  backgroundColor: "blue",
-  color: "magenta",
-  padding: 0,
+  backgroundColor: "#6987c9",
+  color: "white",
+  padding: 5,
+  marginLeft: 70,
+};
+const projectscreatebutton = {
+  backgroundColor: "#FF7E6B",
+  color: "white",
+  padding: 5,
+  marginLeft: 20,
+};
+const movedOver = {
+  marginLeft: 70,
 };
 
 export default function Designer({ newerModel, changeModel }) {
@@ -81,11 +94,11 @@ export default function Designer({ newerModel, changeModel }) {
   return (
     <>
       <div>
-        <h1>Welcome {newerModel.designer.email}</h1>
+        <h1 style={welcomeBar}>Welcome {newerModel.designer.email}</h1>
         <button style={projectsbutton} onClick={handleMove}>
           List Projects
         </button>
-        <button style={projectsbutton} onClick={handleEdit}>
+        <button style={projectscreatebutton} onClick={handleEdit}>
           Create Project
         </button>
       </div>
