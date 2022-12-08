@@ -8,11 +8,13 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Designer from "./pages/designer";
 import Supporter from "./pages/supporter.js";
-import Project from "./pages/projects.js";
+import ProjectPage from "./pages/projects.js";
 import ErrorPage from "./error-page.jsx";
 import Admin from "./pages/admin.js";
 import Edit from "./pages/editProject.js";
 import CreatePledge from "./pages/createPledge.js";
+import PledgePage from "./pages/pledgePage.js";
+import Search from "./pages/search.js";
 //import "./mock/mock.js";
 
 function App() {
@@ -46,8 +48,12 @@ function App() {
           element={<Supporter supModel={model} supChangeModel={setModel} />}
         />
         <Route
+          path="/supporter/search"
+          element={<Search searchModel={model} searchChangeModel={setModel} />}
+        />
+        <Route
           path="/designer/projects/:projectID"
-          element={<Project niceModel={model} dopeModel={setModel} />}
+          element={<ProjectPage niceModel={model} dopeModel={setModel} />}
         />
 
         <Route
@@ -58,6 +64,12 @@ function App() {
         <Route
           path="/designer/projects/:projectID/create"
           element={<CreatePledge pledgeModel={model} pModel={setModel} />}
+        />
+        <Route
+          path="/designer/pledge/:pledgeID"
+          element={
+            <PledgePage pledgePageModel={model} pledgePageEdit={setModel} />
+          }
         />
         <Route
           path="/admin"

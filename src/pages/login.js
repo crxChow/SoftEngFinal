@@ -5,10 +5,28 @@ import Model from "../model/model";
 const loginbutton = {
   backgroundColor: "#FF7E6B",
   color: "white",
+  textSize: 30,
+  marginLeft: 5,
+  marginBottom: 10,
+  padding: 5,
 };
 const createbutton = {
-  backgroundColor: "#6987C9",
+  backgroundColor: "#6987c9",
   color: "white",
+  textSize: 30,
+  marginLeft: 5,
+  marginBottom: 10,
+  padding: 5,
+};
+const welcomeBar = {
+  marginLeft: 69,
+};
+const inputfield = {
+  marginLeft: 69,
+  marginBottom: 5,
+  textSize: 30,
+  padding: 5,
+  width: 200,
 };
 
 export default function Login({ newerModel }) {
@@ -81,8 +99,14 @@ export default function Login({ newerModel }) {
 
   return (
     <div>
-      <h1>{display()}</h1>
-      <input type="text" id="user_name" name="email"></input>
+      <h1 style={welcomeBar}>{display()}</h1>
+      <input
+        style={inputfield}
+        type="text"
+        id="user_name"
+        name="email"
+        placeholder="User email"
+      ></input>
       <button style={loginbutton} onClick={handleClick}>
         LOGIN
       </button>

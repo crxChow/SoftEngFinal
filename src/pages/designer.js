@@ -19,10 +19,7 @@ export default function Designer({ newerModel, changeModel }) {
   console.log(projects);
 
   const handleEdit = () => {
-    
-    
     navigate("/designer/projects/edit");
-
   };
   const handleMove = () => {
     let projModel = new Model();
@@ -107,7 +104,7 @@ export default function Designer({ newerModel, changeModel }) {
             </ul>
           ) : (
             <p>
-              <i>You GotNo Projects Bro</i>
+              <i>You Got No Projects Bro</i>
             </p>
           )}
         </nav>
@@ -115,4 +112,3 @@ export default function Designer({ newerModel, changeModel }) {
     </>
   );
 }
-
