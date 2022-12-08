@@ -17,7 +17,6 @@ export default function Search({ searchModel, searchChangeModel }) {
 
     instance.post("/searchprojects", js).then((response) => {
       console.log(response.data.result);
-      let p = response.data.result;
 
       if (response.data.status === 200) {
         model.projects = response.data.result;

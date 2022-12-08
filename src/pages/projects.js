@@ -8,6 +8,34 @@ const projectsbutton = {
   backgroundColor: "#6987c9",
   color: "white",
   padding: 5,
+  marginLeft: 10,
+};
+const firstButton = {
+  backgroundColor: "#6987c9",
+  color: "white",
+  padding: 5,
+  marginLeft: 70,
+};
+
+const moveOver = {
+  marginLeft: 70,
+};
+const listStyle = {
+  backgroundColor: "white",
+  color: "black",
+  marginTop: 10,
+  textSize: 20,
+};
+const listSpaceStyle = {
+  backgroundColor: "white",
+  color: "white",
+  marginTop: 10,
+  textSize: 20,
+};
+const backStyle = {
+  backgroundColor: "white",
+  color: "white",
+  padding: 5,
 };
 
 export default function ProjectPage({ niceModel, dopeModel }) {
@@ -119,18 +147,18 @@ export default function ProjectPage({ niceModel, dopeModel }) {
   return (
     <>
       <div>
-        <h1>Name: {project.name}</h1>
+        <h1 style={moveOver}>Name: {project.name}</h1>
         <br></br>
-        <h2>Description: {project.description}</h2>
+        <h2 style={moveOver}>Description: {project.description}</h2>
         <br></br>
-        <h2>Date: {project.date}</h2>
+        <h2 style={moveOver}>Date: {project.date}</h2>
         <br></br>
-        <h2>Goal: {project.goal}</h2>
+        <h2 style={moveOver}>Goal: {project.goal}</h2>
         <br></br>
-        <h2>DID: {project.designer}</h2>
+        <h2 style={moveOver}>DID: {project.designer}</h2>
       </div>
       <div>
-        <button style={projectsbutton} onClick={handleView}>
+        <button style={firstButton} onClick={handleView}>
           List Pledges
         </button>
         <button style={projectsbutton} onClick={handleCreate}>
@@ -142,12 +170,15 @@ export default function ProjectPage({ niceModel, dopeModel }) {
         <button style={projectsbutton} onClick={handleLaunch}>
           Launch Project
         </button>
-        <nav>
+        <nav style={moveOver}>
           {pledges.length ? (
-            <ul>
+            <ul style={backStyle}>
               {pledges.map((pledge) => (
-                <li key={pledge.PLID}>
-                  <Link to={`../designer/pledge/${pledge.PLID}`}>
+                <li style={listSpaceStyle} key={pledge.PLID}>
+                  <Link
+                    style={listStyle}
+                    to={`../designer/pledge/${pledge.PLID}`}
+                  >
                     {pledge.name ? <>{pledge.name}</> : <i>No Name</i>}
                     {""}
                   </Link>
@@ -156,7 +187,10 @@ export default function ProjectPage({ niceModel, dopeModel }) {
             </ul>
           ) : (
             <p>
-              <i>You Got No pledges Bro</i>
+              <i>
+                No pledges<br></br> To see pledges click the list pledges
+                button!
+              </i>
             </p>
           )}
         </nav>

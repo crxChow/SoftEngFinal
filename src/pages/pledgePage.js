@@ -1,7 +1,7 @@
 import { instance } from "../model/AI";
 
 export default function PledgePage({ pledgePageModel, pledgePageEditModel }) {
-  const pledgeID = window.location.href.split("/designer/pledge")[1];
+  const pledgeID = window.location.href.split("/designer/pledge/")[1];
   console.log(pledgeID);
   const welcomeBar = {
     marginLeft: 69,
@@ -24,6 +24,7 @@ export default function PledgePage({ pledgePageModel, pledgePageEditModel }) {
     var body = {};
     body["body"] = JSON.stringify(data);
     let js = JSON.stringify(body);
+    console.log("sent" + js);
 
     instance.post("/viewpledge", js).then((response) => {
       console.log(response);

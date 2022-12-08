@@ -19,6 +19,24 @@ const projectscreatebutton = {
   padding: 5,
   marginLeft: 20,
 };
+
+const listStyle = {
+  backgroundColor: "white",
+  color: "black",
+  marginTop: 10,
+  textSize: 20,
+};
+const listSpaceStyle = {
+  backgroundColor: "white",
+  color: "white",
+  marginTop: 10,
+  textSize: 20,
+};
+const backStyle = {
+  backgroundColor: "white",
+  color: "white",
+  padding: 5,
+};
 const movedOver = {
   marginLeft: 70,
 };
@@ -103,12 +121,12 @@ export default function Designer({ newerModel, changeModel }) {
         </button>
       </div>
       <div>
-        <nav>
+        <nav style={movedOver}>
           {projects.length ? (
-            <ul>
+            <ul style={backStyle}>
               {projects.map((project) => (
-                <li key={project.id}>
-                  <Link to={`projects/${project.pid}`}>
+                <li style={listSpaceStyle} key={project.id}>
+                  <Link style={listStyle} to={`projects/${project.pid}`}>
                     {project.name ? <>{project.name}</> : <i>No Name</i>}
                     {""}
                   </Link>
@@ -117,7 +135,10 @@ export default function Designer({ newerModel, changeModel }) {
             </ul>
           ) : (
             <p>
-              <i>You Got No Projects Bro</i>
+              <i>
+                No projects<br></br> To see projects click the list projects
+                button!
+              </i>
             </p>
           )}
         </nav>
