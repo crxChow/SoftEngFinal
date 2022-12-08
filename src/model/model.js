@@ -50,8 +50,8 @@ export class Pledge {
     this.plid = plid;
     this.amount = amount;
     this.maxSupport = maxSupport;
-    this.supporters = [];
   }
+
   //reward constructor
   /*
   constructor(name, amount, reward, maxSupport){
@@ -63,8 +63,8 @@ export class Pledge {
   }
   */
 
-  addSupporter(supporter) {
-    this.supporters.push(supporter);
+  addSupporter(sEmail) {
+    this.supporter = sEmail;
   }
 }
 
@@ -116,6 +116,7 @@ export default class Model {
     this.admins = new Admin();
     //this.supporters = [];
     this.projects = [];
+    this.pledges = [];
     //this.date = {};
   }
 
@@ -145,6 +146,12 @@ export default class Model {
       }
     }
     return false;
+  }
+
+  addPledge(name, plid, amount, maxSupport, sEmail){
+    let tempPledge = new Pledge(name, plid, amount, maxSupport);
+    tempPledge.addSupporter(sEmail)
+    this.pledges.push(tempPledge);
   }
 
   // this is for another tiem
