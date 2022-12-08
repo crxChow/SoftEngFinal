@@ -148,9 +148,9 @@ export default class Model {
     return false;
   }
 
-  addPledge(name, plid, amount, maxSupport, sEmail){
+  addPledge(name, plid, amount, maxSupport, sEmail) {
     let tempPledge = new Pledge(name, plid, amount, maxSupport);
-    tempPledge.addSupporter(sEmail)
+    tempPledge.addSupporter(sEmail);
     this.pledges.push(tempPledge);
   }
 
