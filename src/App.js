@@ -15,6 +15,8 @@ import Edit from "./pages/editProject.js";
 import CreatePledge from "./pages/createPledge.js";
 import PledgePage from "./pages/pledgePage.js";
 import Search from "./pages/search.js";
+import SupporterProject from "./pages/SupporterProject.js";
+import PledgePageSup from "./pages/pledgePageSup.js";
 //import "./mock/mock.js";
 
 function App() {
@@ -50,6 +52,16 @@ function App() {
         <Route
           path="/supporter/search"
           element={<Search searchModel={model} searchChangeModel={setModel} />}
+        />
+        <Route
+          path="/supporter/projects/:projectID"
+          element={<SupporterProject projModel={model} projChangeModel={setModel} />}
+        />
+        <Route
+          path="/supporter/pledge/:pledgeID"
+          element={
+            <PledgePageSup supPModel={model} supPChange={setModel} />
+          }
         />
         <Route
           path="/designer/projects/:projectID"

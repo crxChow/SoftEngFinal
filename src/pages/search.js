@@ -7,6 +7,9 @@ import { Project } from "../model/model";
 export default function Search({ searchModel, searchChangeModel }) {
   let model = new Model();
   let navigate = useNavigate();
+  console.log(searchModel)
+  let projects = searchModel.projects;
+  console.log(projects)
 
   function handleView() {
     var data = {};
@@ -17,14 +20,27 @@ export default function Search({ searchModel, searchChangeModel }) {
 
     instance.post("/searchprojects", js).then((response) => {
       console.log(response.data.result);
+      let tempProjects = response.data.result;
 
       if (response.data.status === 200) {
-        model.projects = response.data.result;
+        if (tempProjects.length !== 0) {
+          for (let i = 0; i < tempProjects.length; i++) {
+
+            model.addProject(
+              tempProjects[i].name,
+              tempProjects[i].PJID,
+              tempProjects[i].description,
+              tempProjects[i].date,
+              tempProjects[i].projType,
+              tempProjects[i].goalAmt,
+              tempProjects[i].DID
+            );
+          }
+        
         searchChangeModel(model);
         navigate("/supporter/search");
-      } else {
-        searchChangeModel(searchModel);
-      }
+        }
+      } 
     });
   }
 
@@ -33,16 +49,15 @@ export default function Search({ searchModel, searchChangeModel }) {
       <h1>Search Project Here!</h1>
       <div>
         <input type="text" id="pt"></input>
-        Project Type:
         <button onClick={handleView}>Search</button>
       </div>
       <div>
         <nav>
-          {searchModel.projects.length ? (
+          {projects.length ? (
             <ul>
-              {searchModel.projects.map((proj) => (
+              {projects.map((proj) => (
                 <li key={proj.pid}>
-                  <Link to={`../supporter/search/${proj.pid}`}>
+                  <Link to={`/supporter/projects/${proj.pid}`}>
                     {proj.name ? <>{proj.name}</> : <i>No Name</i>}
                     {""}
                   </Link>

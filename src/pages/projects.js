@@ -111,9 +111,6 @@ export default function ProjectPage({ niceModel, dopeModel }) {
     });
   }
 
-  function launchAvailable() {
-    return project.isLaunched;
-  }
 
   function handleDelete() {
     let deleteModel = new Model();
