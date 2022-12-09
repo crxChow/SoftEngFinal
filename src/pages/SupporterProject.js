@@ -2,14 +2,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Model from "../model/model";
 import { instance } from "../model/AI";
-import { Project } from "../model/model";
 
-const projectsbutton = {
-  backgroundColor: "#6987c9",
-  color: "white",
-  padding: 5,
-  marginLeft: 10,
-};
 const firstButton = {
   backgroundColor: "#6987c9",
   color: "white",
@@ -40,6 +33,7 @@ const backStyle = {
 
 export default function SupporterProject({ projModel, projChangeModel }) {
   const navigate = useNavigate();
+  console.log("check sup");
   console.log(projModel);
   let pid = window.location.href.split("/projects/")[1];
   console.log(pid);
@@ -71,7 +65,7 @@ export default function SupporterProject({ projModel, projChangeModel }) {
         model = projModel;
         model.projects[index].pledge = response.data.result;
         projChangeModel(model);
-        navigate("/supporter/projects/"+pid);
+        navigate("/supporter/projects/" + pid);
       }
     });
   }
@@ -93,7 +87,7 @@ export default function SupporterProject({ projModel, projChangeModel }) {
         <button style={firstButton} onClick={handleView}>
           List Pledges
         </button>
-        
+
         <nav style={moveOver}>
           {pledges.length ? (
             <ul style={backStyle}>

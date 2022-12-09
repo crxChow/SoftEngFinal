@@ -4,6 +4,26 @@ import { instance } from "../model/AI";
 
 export default function CreatePledge({ pledgeModel, pModel }) {
   console.log(pledgeModel);
+  const createButton = {
+    backgroundColor: "#6987c9",
+    color: "white",
+    textSize: 30,
+    marginLeft: 69,
+    marginBottom: 10,
+    padding: 5,
+    width: 215,
+  };
+
+  const welcomeBar = {
+    marginLeft: 69,
+  };
+  const inputfield = {
+    marginLeft: 69,
+    marginBottom: 5,
+    textSize: 30,
+    padding: 5,
+    width: 200,
+  };
   const navigate = useNavigate();
   const projID = window.location.href
     .split("/projects/")[1]
@@ -74,20 +94,38 @@ export default function CreatePledge({ pledgeModel, pModel }) {
 
   return (
     <div>
-      <h1>Creating a pledge!</h1>
-      <input type="text" id="name"></input>
-      Pledge Name
+      <h1 style={welcomeBar}>Creating a pledge!</h1>
+      <input
+        style={inputfield}
+        type="text"
+        id="name"
+        placeholder="Pledge Name"
+      ></input>
       <br></br>
-      <input type="text" id="amount"></input>
-      Pledge AMOUNT
+      <input
+        style={inputfield}
+        type="text"
+        id="amount"
+        placeholder="Pledge Amount"
+      ></input>
       <br></br>
-      <input type="text" id="reward"></input>
-      Pledge Reward
+      <input
+        style={inputfield}
+        type="text"
+        id="reward"
+        placeholder="Pledge Reward"
+      ></input>
       <br></br>
-      <input type="text" id="maxSupport"></input>
-      Project Support Goal
+      <input
+        style={inputfield}
+        type="text"
+        id="maxSupport"
+        placeholder="Pledge Goal"
+      ></input>
       <br></br>
-      <button onClick={handleMove}>Create Pledge</button>
+      <button style={createButton} onClick={handleMove}>
+        Create Pledge
+      </button>
     </div>
   );
 }

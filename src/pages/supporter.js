@@ -1,15 +1,36 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
-//import { instance } from "../model/AI";
-//import Model from "../model/model";
-//import { useLoaderData } from "react-router-dom";
-
-/*const projectsbutton = {
-  backgroundColor: "blue",
-  color: "magenta",
-  padding: 0,
+const welcomeBar = {
+  marginLeft: 70,
 };
-*/
+
+const projectscreatebutton = {
+  backgroundColor: "#FF7E6B",
+  color: "white",
+  padding: 5,
+  marginLeft: 70,
+};
+
+const listStyle = {
+  backgroundColor: "white",
+  color: "black",
+  marginTop: 10,
+  textSize: 20,
+};
+const listSpaceStyle = {
+  backgroundColor: "white",
+  color: "white",
+  marginTop: 10,
+  textSize: 20,
+};
+const backStyle = {
+  backgroundColor: "white",
+  color: "white",
+  padding: 5,
+};
+const movedOver = {
+  marginLeft: 70,
+};
 
 export default function Supporter({ supModel, supChangeModel }) {
   console.log(supModel);
@@ -28,18 +49,20 @@ export default function Supporter({ supModel, supChangeModel }) {
   return (
     <>
       <div>
-        <h1>Welcome {supModel.supporter.email}</h1>
+        <h1 style={welcomeBar}>Welcome {supModel.supporter.email}</h1>
       </div>
       <div>
-        <button onClick={handleSearch}>Search projects </button>
+        <button style={projectscreatebutton} onClick={handleSearch}>
+          Search projects{" "}
+        </button>
       </div>
       <div>
-        <nav>
+        <nav style={movedOver}>
           {pledges.length ? (
-            <ul>
+            <ul style={backStyle}>
               {pledges.map((pledge) => (
-                <li key={pledge.id}>
-                  <Link to={`pledges/${pledge.plid}`}>
+                <li style={listSpaceStyle} key={pledge.id}>
+                  <Link style={listStyle} to={`pledges/${pledge.plid}`}>
                     {pledge.name ? <>{pledge.name}</> : <i>No Name</i>}
                     {""}
                   </Link>
@@ -48,18 +71,18 @@ export default function Supporter({ supModel, supChangeModel }) {
             </ul>
           ) : (
             <p>
-              <i>You Got No Pledges Bro</i>
+              <i>No pledges</i>
             </p>
           )}
         </nav>
       </div>
       <div>
-        <nav>
+        <nav style={movedOver}>
           {drs.length ? (
-            <ul>
+            <ul style={backStyle}>
               {drs.map((dr) => (
-                <li key={dr.id}>
-                  <Link to={`pledges/${dr.plid}`}>
+                <li style={listSpaceStyle} key={dr.id}>
+                  <Link style={listStyle} to={`pledges/${dr.plid}`}>
                     {dr.name ? <>{dr.name}</> : <i>No Name</i>}
                     {""}
                   </Link>
@@ -68,7 +91,7 @@ export default function Supporter({ supModel, supChangeModel }) {
             </ul>
           ) : (
             <p>
-              <i>You Got No Direct Support Bro</i>
+              <i>No direct support</i>
             </p>
           )}
         </nav>

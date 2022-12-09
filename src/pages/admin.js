@@ -85,7 +85,7 @@ export default function Admin({ adminCurModel, adminChangeModel }) {
         <h2 style={welcomeBar}>You are the owner of this site!</h2>
         <br></br>
         <button style={projectButton} onClick={handleClick}>
-          See all of you glorious projects!
+          See all of your glorious projects!
         </button>
       </div>
       <div>
@@ -103,7 +103,7 @@ export default function Admin({ adminCurModel, adminChangeModel }) {
             </ul>
           ) : (
             <p>
-              <i>CLICK THE BIG BUTTON</i>
+              <i style={welcomeBar}>CLICK THE BIG BUTTON</i>
             </p>
           )}
         </nav>

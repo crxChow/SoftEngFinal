@@ -31,7 +31,7 @@ export class Supporter {
     this.sid = sid;
     this.name = name;
     this.password = password;
-    this.budget = 2000;
+    this.budget = 10000;
     this.pledges = [];
     this.directSupport = [];
   }

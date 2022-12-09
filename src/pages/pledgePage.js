@@ -14,16 +14,18 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
   const moveOver = {
     marginLeft: 70,
   };
+  const moveOverText = {
+    marginLeft: 70,
+  };
   const getPledgeButton = {
     backgroundColor: "#6987c9",
     color: "white",
-    textSize: 30,
+    textSize: 20,
     marginLeft: 69,
     marginBottom: 10,
     padding: 5,
     width: 215,
   };
-  let pledge;
   console.log("loop time");
 
   function handleClick() {
@@ -43,7 +45,7 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
           poj.pledges = response.data.result[0];
           console.log(poj);
           pledgePageEdit(poj);
-          navigate(`../supporter/pledge/${poj.pledges.PLID}`);
+          navigate(`../designer/pledge/${poj.pledges.PLID}`);
         }
       }
     });
@@ -68,12 +70,16 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
             <br></br>
             <h2 style={moveOver}>Goal: {pledgePageModel.pledges.maxSupport}</h2>
             <br></br>
-            <h2 style={moveOver}>User: {pledgePageModel.pledges.supEmail}</h2>
+            {pledgePageModel.pledges.supEmail.length ? (
+              <h2 style={moveOver}>User: {pledgePageModel.pledges.supEmail}</h2>
+            ) : (
+              <h2 style={moveOverText}>Pledge is yet to be claimed!</h2>
+            )}
           </div>
         ) : (
           <p>
-            <i>
-              No info<br></br> To see pledge info click the button!
+            <i style={moveOver}>
+              No info. To see pledge info click the button!
             </i>
           </p>
         )}

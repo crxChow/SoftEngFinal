@@ -5,6 +5,26 @@ import { instance } from "../model/AI";
 export default function Edit({ evennewerModel, changingModel }) {
   console.log(evennewerModel);
   const navigate = useNavigate();
+  const createButton = {
+    backgroundColor: "#6987c9",
+    color: "white",
+    textSize: 30,
+    marginLeft: 69,
+    marginBottom: 10,
+    padding: 5,
+    width: 215,
+  };
+
+  const welcomeBar = {
+    marginLeft: 69,
+  };
+  const inputfield = {
+    marginLeft: 69,
+    marginBottom: 5,
+    textSize: 30,
+    padding: 5,
+    width: 200,
+  };
 
   function handleMove() {
     let editModel = new Model();
@@ -61,9 +81,10 @@ export default function Edit({ evennewerModel, changingModel }) {
 
   return (
     <div>
-      <h1>Creating a project!</h1>
+      <h1 style={welcomeBar}>Creating a project!</h1>
 
       <input
+        style={inputfield}
         type="text"
         id="name"
         name="name"
@@ -71,6 +92,7 @@ export default function Edit({ evennewerModel, changingModel }) {
       ></input>
       <br></br>
       <input
+        style={inputfield}
         type="text"
         id="description"
         placeholder="Project Description
@@ -78,17 +100,30 @@ export default function Edit({ evennewerModel, changingModel }) {
       ></input>
       <br></br>
       <input
+        style={inputfield}
         type="text"
         id="date"
         placeholder="Project End Date
 "
       ></input>
       <br></br>
-      <input type="text" id="type" placeholder="Project Type"></input>
+      <input
+        style={inputfield}
+        type="text"
+        id="type"
+        placeholder="Project Type"
+      ></input>
       <br></br>
-      <input type="text" id="goal" placeholder="Project Goal"></input>
+      <input
+        style={inputfield}
+        type="text"
+        id="goal"
+        placeholder="Project Goal"
+      ></input>
       <br></br>
-      <button onClick={handleMove}>Create Project</button>
+      <button style={createButton} onClick={handleMove}>
+        Create Project
+      </button>
     </div>
   );
 }
