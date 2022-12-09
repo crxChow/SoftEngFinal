@@ -52,7 +52,8 @@ export default function Search({ searchModel, searchChangeModel }) {
 
   function handleView() {
     var data = {};
-    data["projType"] = document.getElementById("pt").value;
+    data["newAmt"] = searchModel.data["projType"] =
+      document.getElementById("pt").value;
     var body = {};
     body["body"] = JSON.stringify(data);
     let js = JSON.stringify(body);
