@@ -35,6 +35,7 @@ export default function PledgePageSup({ supPModel, supPChange }) {
     width: 215,
   };
   function handleClaim() {
+    console.log("sending claim");
     var data = {};
     data["PLID"] = pledgeID;
     data["email"] = supPModel.supporter.email;

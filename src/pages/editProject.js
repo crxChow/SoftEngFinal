@@ -122,12 +122,7 @@ export default function Edit({ evennewerModel, changingModel }) {
         placeholder="Project Goal"
       ></input>
       <br></br>
-      <input
-        style={inputfield}
-        type="text"
-        id="designerName"
-        placeholder="Designer Name"
-      ></input>
+      <h3 style={welcomeBar}>Name is filled for you!</h3>
       <br></br>
       <button style={createButton} onClick={handleMove}>
         Create Project

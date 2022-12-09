@@ -92,7 +92,8 @@ export default function Designer({ newerModel, changeModel }) {
               tempProjects[i].date,
               tempProjects[i].projType,
               tempProjects[i].goalAmt,
-              tempProjects[i].desName
+              tempProjects[i].desName,
+              tempProjects[i].currentAmt
             );
           }
           //dont delete

@@ -18,9 +18,18 @@ export class Designer {
     this.projects = [];
   }
 
-  addProject(name, pid, description, date, projecttype, goal, did) {
+  addProject(name, pid, description, date, projecttype, goal, did, currentAmt) {
     this.projects.push(
-      new Project(name, pid, description, date, projecttype, goal, did)
+      new Project(
+        name,
+        pid,
+        description,
+        date,
+        projecttype,
+        goal,
+        did,
+        currentAmt
+      )
     );
   }
 }

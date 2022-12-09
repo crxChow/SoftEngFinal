@@ -100,7 +100,8 @@ export default function ProjectPage({ niceModel, dopeModel }) {
           result.date,
           result.projType,
           result.goalAmt,
-          result.desName
+          result.desName,
+          result.currentAmt
         );
         replaceProj.isLaunched = result.isLaunched;
         model = niceModel;
