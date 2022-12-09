@@ -76,14 +76,23 @@ export class DirectSupport {
 }
 
 export class Project {
-  constructor(name, pid, description, date, projecttype, goal, designer) {
+  constructor(
+    name,
+    pid,
+    description,
+    date,
+    projecttype,
+    goal,
+    designer,
+    curAmount
+  ) {
     this.name = name;
     this.pid = pid;
     this.description = description;
     this.date = date;
     this.projecttype = projecttype;
     this.goal = goal;
-    this.funds = 0;
+    this.curAmount = curAmount;
     this.designer = designer;
     this.pledge = [];
     this.directSupport = [];
@@ -133,9 +142,18 @@ export default class Model {
     console.log(this.supporter);
   }
 
-  addProject(name, pid, description, date, projectType, goal, did) {
+  addProject(name, pid, description, date, projectType, goal, did, curAmount) {
     this.projects.push(
-      new Project(name, pid, description, date, projectType, goal, did)
+      new Project(
+        name,
+        pid,
+        description,
+        date,
+        projectType,
+        goal,
+        did,
+        curAmount
+      )
     );
   }
 

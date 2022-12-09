@@ -71,7 +71,7 @@ export default function Search({ searchModel, searchChangeModel }) {
               tempProjects[i].date,
               tempProjects[i].projType,
               tempProjects[i].goalAmt,
-              tempProjects[i].DID
+              tempProjects[i].desName
             );
           }
           model.supporter = searchModel.supporter;

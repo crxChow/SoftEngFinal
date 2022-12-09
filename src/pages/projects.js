@@ -100,7 +100,7 @@ export default function ProjectPage({ niceModel, dopeModel }) {
           result.date,
           result.projType,
           result.goalAmt,
-          result.DID
+          result.desName
         );
         replaceProj.isLaunched = result.isLaunched;
         model = niceModel;
@@ -110,7 +110,6 @@ export default function ProjectPage({ niceModel, dopeModel }) {
       }
     });
   }
-
 
   function handleDelete() {
     let deleteModel = new Model();
@@ -152,7 +151,9 @@ export default function ProjectPage({ niceModel, dopeModel }) {
         <br></br>
         <h2 style={moveOver}>Goal: {project.goal}</h2>
         <br></br>
-        <h2 style={moveOver}>DID: {project.designer}</h2>
+        <h2 style={moveOver}>Designer: {project.designer}</h2>
+        <br></br>
+        <h2 style={moveOver}>Amount: {project.curAmount}</h2>
       </div>
       <div>
         <button style={firstButton} onClick={handleView}>

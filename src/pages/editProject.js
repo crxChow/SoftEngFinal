@@ -34,7 +34,8 @@ export default function Edit({ evennewerModel, changingModel }) {
     );
     console.log(editModel);
     var data = {};
-    data["email"] = evennewerModel.designer.email;
+    data["email"] = editModel.designer.email;
+    data["desName"] = document.getElementById("designerName").value;
     data["name"] = document.getElementById("name").value;
     data["description"] = document.getElementById("description").value;
     data["date"] = document.getElementById("date").value;
@@ -62,7 +63,7 @@ export default function Edit({ evennewerModel, changingModel }) {
               tempProjList[i].date,
               tempProjList[i].projType,
               tempProjList[i].goalAmt,
-              tempProjList[i].DID
+              tempProjList[i].desName
             );
           }
           console.log("nice project bro");
@@ -82,7 +83,6 @@ export default function Edit({ evennewerModel, changingModel }) {
   return (
     <div>
       <h1 style={welcomeBar}>Creating a project!</h1>
-
       <input
         style={inputfield}
         type="text"
@@ -106,6 +106,7 @@ export default function Edit({ evennewerModel, changingModel }) {
         placeholder="Project End Date
 "
       ></input>
+      YYYY-MM-DD
       <br></br>
       <input
         style={inputfield}
@@ -119,6 +120,13 @@ export default function Edit({ evennewerModel, changingModel }) {
         type="text"
         id="goal"
         placeholder="Project Goal"
+      ></input>
+      <br></br>
+      <input
+        style={inputfield}
+        type="text"
+        id="designerName"
+        placeholder="Designer Name"
       ></input>
       <br></br>
       <button style={createButton} onClick={handleMove}>

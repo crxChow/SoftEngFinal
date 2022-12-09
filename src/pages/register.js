@@ -75,9 +75,9 @@ export default function Register({ newModel }) {
 
     let modelAgain = new Model();
     var data = {};
-    data["name"] = document.getElementById("password").value;
+    data["name"] = document.getElementById("name").value;
     data["email"] = userEmail;
-    data["password"] = document.getElementById("name").value;
+    data["password"] = document.getElementById("password").value;
 
     // to work with API gateway, I need to wrap inside a 'body'
     var body = {};
@@ -110,7 +110,7 @@ export default function Register({ newModel }) {
         style={inputfield}
         type="text"
         id="user_name"
-        placeholder="Username"
+        placeholder="User Email"
       ></input>
       <br></br>
       <input
