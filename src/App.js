@@ -17,6 +17,7 @@ import PledgePage from "./pages/pledgePage.js";
 import Search from "./pages/search.js";
 import SupporterProject from "./pages/SupporterProject.js";
 import PledgePageSup from "./pages/pledgePageSup.js";
+import AdminProjectPage from "./pages/projectAdmin.js";
 //import "./mock/mock.js";
 
 function App() {
@@ -55,13 +56,13 @@ function App() {
         />
         <Route
           path="/supporter/projects/:projectID"
-          element={<SupporterProject projModel={model} projChangeModel={setModel} />}
+          element={
+            <SupporterProject projModel={model} projChangeModel={setModel} />
+          }
         />
         <Route
           path="/supporter/pledge/:pledgeID"
-          element={
-            <PledgePageSup supPModel={model} supPChange={setModel} />
-          }
+          element={<PledgePageSup supPModel={model} supPChange={setModel} />}
         />
         <Route
           path="/designer/projects/:projectID"
@@ -86,6 +87,15 @@ function App() {
         <Route
           path="/admin"
           element={<Admin adminCurModel={model} adminChangeModel={setModel} />}
+        />
+        <Route
+          path="/admin/projects/:projectID"
+          element={
+            <AdminProjectPage
+              adminProjModel={model}
+              adminProjChangeModel={setModel}
+            />
+          }
         />
         {/*this is the error page*/}
         <Route path="*" element={<ErrorPage />} />

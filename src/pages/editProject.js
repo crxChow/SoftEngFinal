@@ -35,7 +35,6 @@ export default function Edit({ evennewerModel, changingModel }) {
     console.log(editModel);
     var data = {};
     data["email"] = editModel.designer.email;
-    data["desName"] = document.getElementById("designerName").value;
     data["name"] = document.getElementById("name").value;
     data["description"] = document.getElementById("description").value;
     data["date"] = document.getElementById("date").value;
