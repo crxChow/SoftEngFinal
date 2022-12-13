@@ -51,6 +51,7 @@ export default function Supporter({ supModel, supChangeModel }) {
       <div>
         <h1 style={welcomeBar}>Welcome {supModel.supporter.email}</h1>
       </div>
+      <div style={welcomeBar}>You have: $ {supModel.supporter.budget}</div>
       <div>
         <button style={projectscreatebutton} onClick={handleSearch}>
           Search projects{" "}

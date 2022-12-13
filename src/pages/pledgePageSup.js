@@ -53,6 +53,7 @@ export default function PledgePageSup({ supPModel, supPChange }) {
           poj.pledges = response.data.result[0];
           console.log(poj);
           poj.supporter = supPModel.supporter;
+          poj.supporter.removeFunds(supPModel.pledges.amount);
           supPChange(poj);
           navigate(`../supporter/pledge/${pledgeID}`);
         }

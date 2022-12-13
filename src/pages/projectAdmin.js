@@ -3,6 +3,16 @@ import Model from "../model/model";
 import { instance } from "../model/AI";
 import { Project } from "../model/model";
 
+const projectsbutton = {
+  backgroundColor: "#6987c9",
+  color: "white",
+  padding: 5,
+  marginLeft: 10,
+};
+const moveOver = {
+  marginLeft: 70,
+};
+
 export default function AdminProjectPage({
   adminProjModel,
   adminProjChangeModel,
