@@ -90,11 +90,11 @@ export default function Register({ newModel }) {
       console.log(tempResponse);
 
       if (response.status === 200) {
-        modelAgain.addSupporter(
+        /*modelAgain.addSupporter(
           tempResponse[0].email,
           tempResponse[0].SID,
           tempResponse[0].name
-        );
+        ); */
         console.log(modelAgain);
         navigate("/login");
       } else {
