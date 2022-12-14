@@ -57,11 +57,12 @@ export default function Search({ searchModel, searchChangeModel }) {
     body["body"] = JSON.stringify(data);
     let js = JSON.stringify(body);
 
-    instance.post("/searchprojects", js).then((response) => {
+    instance.post("/searchprojectsgenre", js).then((response) => {
       console.log(response.data.result);
       let tempProjects = response.data.result;
 
       if (response.data.status === 200) {
+        model.projects = [];
         if (tempProjects.length !== 0) {
           for (let i = 0; i < tempProjects.length; i++) {
             model.addProject(
@@ -75,11 +76,45 @@ export default function Search({ searchModel, searchChangeModel }) {
               tempProjects[i].currentAmt
             );
           }
-          model.supporter = searchModel.supporter;
-          searchChangeModel(model);
-          navigate("/supporter/search");
+        }
+        model.supporter = searchModel.supporter;
+        searchChangeModel(model);
+        navigate("/supporter/search");
+      }
+    });
+  }
+
+  function handleDes() {
+    var data = {};
+    data["keyword"] = document.getElementById("pt").value;
+    var body = {};
+    body["body"] = JSON.stringify(data);
+    let js = JSON.stringify(body);
+
+    instance.post("/searchprojectsdescription", js).then((response) => {
+      console.log(response.data.result);
+      let tempProjects = response.data.result;
+
+      if (response.data.status === 200) {
+        model.projects = [];
+        if (tempProjects.length !== 0) {
+          for (let i = 0; i < tempProjects.length; i++) {
+            model.addProject(
+              tempProjects[i].name,
+              tempProjects[i].PJID,
+              tempProjects[i].description,
+              tempProjects[i].date,
+              tempProjects[i].projType,
+              tempProjects[i].goalAmt,
+              tempProjects[i].desName,
+              tempProjects[i].currentAmt
+            );
+          }
         }
       }
+      model.supporter = searchModel.supporter;
+      searchChangeModel(model);
+      navigate("/supporter/search");
     });
   }
 
@@ -94,7 +129,10 @@ export default function Search({ searchModel, searchChangeModel }) {
           placeholder="Search by Genre"
         ></input>
         <button style={searchButton} onClick={handleView}>
-          Search
+          Search Genre
+        </button>
+        <button style={searchButton} onClick={handleDes}>
+          Search Description
         </button>
       </div>
       <div>
