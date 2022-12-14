@@ -49,6 +49,10 @@ export class Supporter {
     this.budget += amount;
   }
 
+  removeFunds(amount) {
+    this.budget -= amount;
+  }
+
   //pledges ds and removing money. another time
 }
 
