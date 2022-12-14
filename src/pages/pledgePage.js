@@ -8,6 +8,7 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
   let poj = new Model();
   poj.project = pledgePageModel.project;
   console.log(pledgeID);
+  console.log(pledgePageModel);
   const welcomeBar = {
     marginLeft: 69,
   };
@@ -26,36 +27,39 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
     padding: 5,
     width: 215,
   };
+  const deletePledgeButton = {
+    backgroundColor: "#6987c9",
+    color: "white",
+    textSize: 20,
+    marginLeft: 20,
+    marginBottom: 10,
+    padding: 5,
+    width: 215,
+  };
   console.log("loop time");
 
   function handleDelete() {
-    let deleteModel = new Model();
+    var data = {};
+    data["PLID"] = pledgeID;
+    var body = {};
+    body["body"] = JSON.stringify(data);
+    let js = JSON.stringify(body);
 
-    deleteModel.designer = pledgePageModel.designer;
-    for (let i = 0; i < pledgePageModel.designer.projects.pledges.length; i++) {
-      let proj = deleteModel.designer.projects[i];
-      if (proj.pid === pid) {
-        var data = {};
-        data["PJID"] = pid;
-        var body = {};
-        body["body"] = JSON.stringify(data);
-        let js = JSON.stringify(body);
-
-        instance.post("/deleteproject", js).then((response) => {
-          console.log(response);
-          if (response.data.result === "delete success") {
-            deleteModel.designer.projects.splice(
+    instance.post("/deletepledge", js).then((response) => {
+      console.log(response);
+      if (response.data.result === "delete success") {
+        /*deleteModel.designer.projects.splice(
               deleteModel.designer.projects.indexOf(proj),
               1
-            );
-            dopeModel(deleteModel);
-            navigate("/designer");
-          } else {
-            navigate("/designer");
-          }
-        });
+            );*/
+        let newMod = new Model();
+        newMod.designer = pledgePageModel.designer;
+        pledgePageEdit(newMod);
+        navigate("/designer");
+      } else {
+        navigate(`../designer/pledge/${poj.pledges.PLID}`);
       }
-    }
+    });
   }
 
   function handleClick() {
@@ -73,6 +77,7 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
       if (response.data.status === 200) {
         if (response.data.result.length !== 0) {
           poj.pledges = response.data.result[0];
+          poj.designer = pledgePageModel.designer;
           console.log(poj);
           pledgePageEdit(poj);
           navigate(`../designer/pledge/${poj.pledges.PLID}`);
@@ -87,6 +92,9 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
         <h1 style={welcomeBar}>Click to view the pledge info</h1>
         <button style={getPledgeButton} onClick={handleClick}>
           Get pledge info!
+        </button>
+        <button style={deletePledgeButton} onClick={handleDelete}>
+          Delete pledge!
         </button>
       </div>
       <div>

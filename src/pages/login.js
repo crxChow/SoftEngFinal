@@ -32,7 +32,7 @@ const inputfield = {
 export default function Login({ newerModel }) {
   const navigate = useNavigate();
   const handleMove = () => {
-    console.log("bye bitch");
+    console.log("bye");
     navigate("/register");
   };
   const handleClick = () => {
@@ -76,11 +76,14 @@ export default function Login({ newerModel }) {
       } else if (response.data.user === "admin") {
         navigate("/admin");
       } else if (response.data.user === "supporter") {
-        modelAgain.addSupporter(
+        modelAgain.addFullSupporter(
           tempUser[0].email,
           tempUser[0].SID,
           tempUser[0].name,
-          tempUser[0].password
+          tempUser[0].password,
+          tempUser[0].budget,
+          [],
+          []
         );
         newerModel(modelAgain);
         console.log("SUPPORTER LOGGED IN");

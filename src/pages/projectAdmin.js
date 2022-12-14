@@ -17,6 +17,7 @@ export default function AdminProjectPage({
   adminProjModel,
   adminProjChangeModel,
 }) {
+  let index;
   const navigate = useNavigate();
   console.log(adminProjModel);
   let pid = window.location.href.split("/projects/")[1];

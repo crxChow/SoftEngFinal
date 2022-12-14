@@ -35,14 +35,14 @@ export class Designer {
 }
 
 export class Supporter {
-  constructor(email, sid, name, password) {
+  constructor(email, sid, name, password, budget, pledges, directSupport) {
     this.email = email;
     this.sid = sid;
     this.name = name;
     this.password = password;
-    this.budget = 10000;
-    this.pledges = [];
-    this.directSupport = [];
+    this.budget = budget;
+    this.pledges = pledges;
+    this.directSupport = directSupport;
   }
 
   addFunds(amount) {
@@ -152,6 +152,19 @@ export default class Model {
     console.log(email, sid, Newname);
     //this.designers.push(new Designer(email, projects));
     this.supporter = new Supporter(email, sid, Newname, password);
+    console.log(this.supporter);
+  }
+
+  addFullSupporter(email, sid, NewName, password, budget, pledges, projects) {
+    this.supporter = new Supporter(
+      email,
+      sid,
+      NewName,
+      password,
+      budget,
+      pledges,
+      projects
+    );
     console.log(this.supporter);
   }
 
