@@ -51,11 +51,16 @@ const listSpaceStyle = {
 };
 const backStyle = {
   backgroundColor: "white",
-  color: "white",
+  color: "black",
   padding: 5,
 };
 const movedOver = {
   marginLeft: 70,
+};
+
+const fundsText = {
+  marginLeft: 70,
+  fontSize: 20,
 };
 
 export default function Supporter({ supModel, supChangeModel }) {
@@ -84,7 +89,9 @@ export default function Supporter({ supModel, supChangeModel }) {
 
     instance.post("/reviewsupactivity", js).then((response) => {
       console.log(response.data.result);
-      let tempResponse = response.data.result;
+      let tempResponse = response.data.result.supInfo;
+      let tempPledges = response.data.result.pledgeList;
+      let tempDS = response.data.result.directSupList;
       console.log(tempResponse);
 
       if (response.status === 200) {
@@ -94,8 +101,8 @@ export default function Supporter({ supModel, supChangeModel }) {
           tempResponse.name,
           tempResponse.password,
           tempResponse.budget,
-          tempResponse.pledges,
-          tempResponse.projects
+          tempPledges,
+          tempDS
         );
         console.log(modelAgain);
         supChangeModel(modelAgain);
@@ -149,7 +156,7 @@ export default function Supporter({ supModel, supChangeModel }) {
       <div>
         <h1 style={welcomeBar}>Welcome {supModel.supporter.email}</h1>
       </div>
-      <div style={welcomeBar}>You have: $ {supModel.supporter.budget}</div>
+      <div style={fundsText}>You have: $ {supModel.supporter.budget}</div>
       <br></br>
       <input
         style={inputfield}
@@ -175,12 +182,13 @@ export default function Supporter({ supModel, supChangeModel }) {
         <nav style={movedOver}>
           {pledges.length ? (
             <ul style={backStyle}>
+              <h2>Pledges!</h2>
               {pledges.map((pledge) => (
                 <li style={listSpaceStyle} key={pledge.id}>
-                  <Link style={listStyle} to={`pledges/${pledge.plid}`}>
+                  <div style={listStyle} to={`pledges/${pledge.plid}`}>
                     {pledge.name ? <>{pledge.name}</> : <i>No Name</i>}
                     {""}
-                  </Link>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -195,18 +203,31 @@ export default function Supporter({ supModel, supChangeModel }) {
         <nav style={movedOver}>
           {drs.length ? (
             <ul style={backStyle}>
+              <h2>Direct Support!</h2>
               {drs.map((dr) => (
                 <li style={listSpaceStyle} key={dr.id}>
-                  <Link style={listStyle} to={`pledges/${dr.plid}`}>
-                    {dr.name ? <>{dr.name}</> : <i>No Name</i>}
+                  <div style={listStyle} to={`pledges/${dr.plid}`}>
+                    {dr.PJID ? (
+                      <>
+                        {"Project id:  " +
+                          dr.PJID +
+                          "    Amount: $" +
+                          dr.amount}
+                      </>
+                    ) : (
+                      <i>No Name</i>
+                    )}
                     {""}
-                  </Link>
+                  </div>
                 </li>
               ))}
             </ul>
           ) : (
             <p>
               <i>No direct support</i>
+              <br></br>
+              <br></br>
+              <i>To see supported activity press the button!</i>
             </p>
           )}
         </nav>
