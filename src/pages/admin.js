@@ -17,11 +17,32 @@ export default function Admin({ adminCurModel, adminChangeModel }) {
     marginBottom: 10,
     padding: 5,
   };
+  const reapButton = {
+    backgroundColor: "#6987c9",
+    color: "white",
+    padding: 5,
+    marginLeft: 70,
+  };
 
   let allProjects;
   let modelNew = new Model();
   modelNew = adminCurModel;
   allProjects = modelNew.projects;
+
+  function handleReap() {
+    var data = {};
+    data["email"] = "cp@gmail.com";
+
+    // to work with API gateway, I need to wrap inside a 'body'
+    var body = {};
+    body["body"] = JSON.stringify(data);
+    var js = JSON.stringify(body);
+    console.log("sent: " + js);
+
+    instance.post("/reapprojects", js).then((response) => {
+      console.log(response.data);
+    });
+  }
 
   const handleClick = () => {
     let adminModel = new Model();
@@ -107,6 +128,11 @@ export default function Admin({ adminCurModel, adminChangeModel }) {
             </p>
           )}
         </nav>
+      </div>
+      <div>
+        <button style={reapButton} onClick={handleReap}>
+          Reap Projects
+        </button>
       </div>
     </>
   );
