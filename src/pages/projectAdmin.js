@@ -17,12 +17,12 @@ export default function AdminProjectPage({
   adminProjModel,
   adminProjChangeModel,
 }) {
-  let index;
   const navigate = useNavigate();
   console.log(adminProjModel);
   let pid = window.location.href.split("/projects/")[1];
   console.log(pid);
   let project;
+  let index;
   for (let i = 0; i <= adminProjModel.projects.length; i++) {
     if (pid === adminProjModel.projects[i].pid) {
       project = adminProjModel.projects[i];
@@ -46,16 +46,17 @@ export default function AdminProjectPage({
         let js = JSON.stringify(body);
 
         instance.post("/deleteprojectadmin", js).then((response) => {
-          console.log(response);
-          if (response.data.result === "delete success") {
-            deleteModel.designer.projects.splice(
-              deleteModel.designer.projects.indexOf(proj),
-              1
-            );
+          if (response.data.status === 200) {
+            let remaining = [];
+            remaining = response.data.result;
+            console.log(remaining);
+            deleteModel.projects = remaining;
+            console.log("project deleted");
             adminProjChangeModel(deleteModel);
-            navigate("/amdin");
-          } else {
             navigate("/admin");
+          } else {
+            console.log("that sorta worked");
+            //navigate("/admin");
           }
         });
       }

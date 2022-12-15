@@ -126,7 +126,7 @@ export default function Search({ searchModel, searchChangeModel }) {
           style={inputfield}
           type="text"
           id="pt"
-          placeholder="Search by Genre"
+          placeholder="Search here!"
         ></input>
         <button style={searchButton} onClick={handleView}>
           Search Genre

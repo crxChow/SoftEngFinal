@@ -10,6 +10,14 @@ const firstButton = {
   marginLeft: 70,
 };
 
+const inputfield = {
+  marginLeft: 70,
+  marginBottom: 5,
+  textSize: 30,
+  padding: 5,
+  width: 200,
+};
+
 const moveOver = {
   marginLeft: 70,
 };
@@ -31,6 +39,13 @@ const backStyle = {
   padding: 5,
 };
 
+const supportButton = {
+  backgroundColor: "#6987c9",
+  color: "white",
+  padding: 5,
+  marginLeft: 5,
+};
+
 export default function SupporterProject({ projModel, projChangeModel }) {
   const navigate = useNavigate();
   console.log("check sup");
@@ -50,6 +65,20 @@ export default function SupporterProject({ projModel, projChangeModel }) {
     }
   }
   console.log(project);
+
+  function directSupport() {
+    var data = {};
+    data["email"] = projModel.supporter.email;
+    data["PJID"] = pid;
+    data["amount"] = document.getElementById("amount").value;
+    var body = {};
+    body["body"] = JSON.stringify(data);
+    let js = JSON.stringify(body);
+
+    instance.post("/directsupport", js).then((response) => {
+      console.log(response);
+    });
+  }
 
   function handleView() {
     var data = {};
@@ -83,6 +112,17 @@ export default function SupporterProject({ projModel, projChangeModel }) {
         <br></br>
         <h2 style={moveOver}>Designer: {project.designer}</h2>
       </div>
+      <br></br>
+      <h2>Make a direct support contribution!</h2>
+      <input
+        style={inputfield}
+        placeholder="Support Ammount"
+        type="text"
+        id="amount"
+      ></input>
+      <button style={supportButton} onClick={directSupport}>
+        Support!
+      </button>{" "}
       <div>
         <button style={firstButton} onClick={handleView}>
           List Pledges

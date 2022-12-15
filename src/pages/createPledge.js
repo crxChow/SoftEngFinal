@@ -120,7 +120,7 @@ export default function CreatePledge({ pledgeModel, pModel }) {
         style={inputfield}
         type="text"
         id="maxSupport"
-        placeholder="Pledge Goal"
+        placeholder="Max Support"
       ></input>
       <br></br>
       <button style={createButton} onClick={handleMove}>

@@ -57,7 +57,7 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
         pledgePageEdit(newMod);
         navigate("/designer");
       } else {
-        navigate(`../designer/pledge/${poj.pledges.PLID}`);
+        navigate(`../designer/pledge/${pledgeID}`);
       }
     });
   }
