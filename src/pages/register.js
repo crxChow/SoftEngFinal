@@ -116,14 +116,14 @@ export default function Register({ newModel }) {
       <input
         style={inputfield}
         type="text"
-        id="name"
+        id="password"
         placeholder="Name"
       ></input>
       <br></br>
       <input
         style={inputfield}
         type="text"
-        id="password"
+        id="name"
         placeholder="Password"
       ></input>
       <br></br>
