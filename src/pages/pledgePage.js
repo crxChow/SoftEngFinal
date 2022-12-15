@@ -44,6 +44,7 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
     var body = {};
     body["body"] = JSON.stringify(data);
     let js = JSON.stringify(body);
+    console.log(js);
 
     instance.post("/deletepledge", js).then((response) => {
       console.log(response);
@@ -57,6 +58,7 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
         pledgePageEdit(newMod);
         navigate("/designer");
       } else {
+        console.log("not deleted");
         navigate(`../designer/pledge/${pledgeID}`);
       }
     });
