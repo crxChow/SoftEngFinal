@@ -90,7 +90,7 @@ export default function Supporter({ supModel, supChangeModel }) {
     instance.post("/reviewsupactivity", js).then((response) => {
       console.log(response.data.result);
       let tempResponse = response.data.result.supInfo;
-      let tempPledges = response.data.result.pledgeList;
+      let tempPledges = response.data.result.ClaimedPledgeList;
       let tempDS = response.data.result.directSupList;
       console.log(tempResponse);
 
@@ -186,7 +186,7 @@ export default function Supporter({ supModel, supChangeModel }) {
               {pledges.map((pledge) => (
                 <li style={listSpaceStyle} key={pledge.id}>
                   <div style={listStyle} to={`pledges/${pledge.plid}`}>
-                    {pledge.name ? <>{pledge.name}</> : <i>No Name</i>}
+                    {pledge.PLID ? <>{pledge.PLID}</> : <i>No PLID</i>}
                     {""}
                   </div>
                 </li>
