@@ -36,6 +36,25 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
     padding: 5,
     width: 215,
   };
+
+  const listStyle = {
+    backgroundColor: "white",
+    color: "black",
+    marginTop: 10,
+    textSize: 20,
+  };
+  const listSpaceStyle = {
+    backgroundColor: "white",
+    color: "white",
+    marginTop: 10,
+    textSize: 20,
+  };
+  const backStyle = {
+    backgroundColor: "white",
+    color: "black",
+    padding: 5,
+    marginLeft: 70,
+  };
   console.log("loop time");
 
   function handleDelete() {
@@ -74,15 +93,15 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
 
     instance.post("/viewpledge", js).then((response) => {
       console.log(poj);
-      console.log(response.data.result[0]);
+      console.log(response.data.result);
 
       if (response.data.status === 200) {
         if (response.data.result.length !== 0) {
-          poj.pledges = response.data.result[0];
+          poj.pledges = response.data.result;
           poj.designer = pledgePageModel.designer;
           console.log(poj);
           pledgePageEdit(poj);
-          navigate(`../designer/pledge/${poj.pledges.PLID}`);
+          navigate(`../designer/pledge/${pledgeID}`);
         }
       }
     });
@@ -100,18 +119,39 @@ export default function PledgePage({ pledgePageModel, pledgePageEdit }) {
         </button>
       </div>
       <div>
-        {pledgePageModel.pledges.name ? (
+        {pledgePageModel.pledges.pledge ? (
           <div>
-            <h1 style={moveOver}>Name: {pledgePageModel.pledges.name}</h1>
+            <h1 style={moveOver}>
+              Name: {pledgePageModel.pledges.pledge[0].name}
+            </h1>
             <br></br>
-            <h2 style={moveOver}>Reward: {pledgePageModel.pledges.reward}</h2>
+            <h2 style={moveOver}>
+              Reward: {pledgePageModel.pledges.pledge[0].reward}
+            </h2>
             <br></br>
-            <h2 style={moveOver}>Cost: {pledgePageModel.pledges.amount}</h2>
+            <h2 style={moveOver}>
+              Cost: {pledgePageModel.pledges.pledge[0].amount}
+            </h2>
             <br></br>
-            <h2 style={moveOver}>Goal: {pledgePageModel.pledges.maxSupport}</h2>
-            <br></br>
-            {pledgePageModel.pledges.supEmail.length ? (
-              <h2 style={moveOver}>User: {pledgePageModel.pledges.supEmail}</h2>
+            <h2 style={moveOver}>
+              Goal: {pledgePageModel.pledges.pledge[0].maxSupport}
+            </h2>
+            {pledgePageModel.pledges.supporters.length ? (
+              <ul style={backStyle}>
+                <h2>Pledge Claims</h2>
+                {pledgePageModel.pledges.supporters.map((supporter) => (
+                  <li style={listSpaceStyle}>
+                    <div style={listStyle}>
+                      {supporter.email ? (
+                        <>{supporter.email}</>
+                      ) : (
+                        <i>No Name</i>
+                      )}
+                      {""}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             ) : (
               <h2 style={moveOverText}>Pledge is yet to be claimed!</h2>
             )}

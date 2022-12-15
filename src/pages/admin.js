@@ -31,7 +31,7 @@ export default function Admin({ adminCurModel, adminChangeModel }) {
 
   function handleReap() {
     var data = {};
-    data["email"] = "cp@gmail.com";
+    data["email"] = "cp@admin.com";
 
     // to work with API gateway, I need to wrap inside a 'body'
     var body = {};
@@ -118,6 +118,16 @@ export default function Admin({ adminCurModel, adminChangeModel }) {
                   <Link to={`projects/${project.pid}`}>
                     {project.name ? <>{project.name}</> : <i>No Name</i>}
                     {""}
+                    {project.PJID ? (
+                      <>
+                        {"Project id:  " +
+                          project.PJID +
+                          "    Succeded?: " +
+                          project.amount}
+                      </>
+                    ) : (
+                      <i></i>
+                    )}
                   </Link>
                 </li>
               ))}

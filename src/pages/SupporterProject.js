@@ -113,7 +113,7 @@ export default function SupporterProject({ projModel, projChangeModel }) {
         <h2 style={moveOver}>Designer: {project.designer}</h2>
       </div>
       <br></br>
-      <h2>Make a direct support contribution!</h2>
+      <h2 style={moveOver}>Make a direct support contribution!</h2>
       <input
         style={inputfield}
         placeholder="Support Ammount"

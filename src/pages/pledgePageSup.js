@@ -10,6 +10,20 @@ export default function PledgePageSup({ supPModel, supPChange }) {
   poj.projects = supPModel.projects;
   console.log(supPModel);
 
+  const isitfull = getVis();
+
+  function getVis() {
+    console.log(supPModel.pledges.pledge);
+    if (typeof supPModel.pledges.pledge === "undefined") {
+      return false;
+    } else {
+      if (supPModel.pledges.pledge[0].maxSupport !== 0) {
+        return true;
+      }
+      return false;
+    }
+  }
+
   const welcomeBar = {
     marginLeft: 69,
   };
@@ -76,11 +90,11 @@ export default function PledgePageSup({ supPModel, supPChange }) {
 
       if (response.data.status === 200) {
         if (response.data.result.length !== 0) {
-          poj.pledges = response.data.result[0];
+          poj.pledges = response.data.result;
           console.log(poj);
           poj.supporter = supPModel.supporter;
           supPChange(poj);
-          navigate(`../supporter/pledge/${poj.pledges.PLID}`);
+          navigate(`../supporter/pledge/${pledgeID}`);
         }
       }
     });
@@ -100,20 +114,24 @@ export default function PledgePageSup({ supPModel, supPChange }) {
         <button style={getPledgeButton} onClick={handleClick}>
           Get pledge info!
         </button>
-        <button style={claimButton} onClick={handleClaim}>
+        <button style={claimButton} onClick={handleClaim} disabled={!isitfull}>
           Claim this pledge!
         </button>
       </div>
       <div>
-        {supPModel.pledges.name ? (
+        {supPModel.pledges.pledge ? (
           <div>
-            <h1 style={moveOver}>Name: {supPModel.pledges.name}</h1>
+            <h1 style={moveOver}>Name: {supPModel.pledges.pledge[0].name}</h1>
             <br></br>
-            <h2 style={moveOver}>Reward: {supPModel.pledges.reward}</h2>
+            <h2 style={moveOver}>
+              Reward: {supPModel.pledges.pledge[0].reward}
+            </h2>
             <br></br>
-            <h2 style={moveOver}>Cost: {supPModel.pledges.amount}</h2>
+            <h2 style={moveOver}>Cost: {supPModel.pledges.pledge[0].amount}</h2>
             <br></br>
-            <h2 style={moveOver}>Goal: {supPModel.pledges.maxSupport}</h2>
+            <h2 style={moveOver}>
+              Remaining claims: {supPModel.pledges.pledge[0].maxSupport}
+            </h2>
           </div>
         ) : (
           <p style={moveOver}>
